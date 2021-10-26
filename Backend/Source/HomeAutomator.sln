@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator", "HomeAutomator\HomeAutomator.csproj", "{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Hue", "HomeAutomator.Hue\HomeAutomator.Hue.csproj", "{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {970F2843-B90D-4BF8-B8AC-8F71D6E099EE}
+	EndGlobalSection
+EndGlobal
