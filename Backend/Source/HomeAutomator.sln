@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator", "HomeAutomator\HomeAutomator.csproj", "{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator", "HomeAutomator\HomeAutomator.csproj", "{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Hue", "HomeAutomator.Hue\HomeAutomator.Hue.csproj", "{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue", "HomeAutomator.Hue\HomeAutomator.Hue.csproj", "{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Persistance", "HomeAutomator.Hue.Persistance\HomeAutomator.Hue.Persistance.csproj", "{C7AB0917-6981-4B77-BAFA-C8D5404D8034}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Services", "HomeAutomator.Hue.Services\HomeAutomator.Hue.Services.csproj", "{0D906C20-A817-4E75-BF11-9559DDBFB7D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Api", "HomeAutomator.Api\HomeAutomator.Api.csproj", "{76A4235D-BA39-445E-9CE9-586DA5BE447B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AB0917-6981-4B77-BAFA-C8D5404D8034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AB0917-6981-4B77-BAFA-C8D5404D8034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AB0917-6981-4B77-BAFA-C8D5404D8034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AB0917-6981-4B77-BAFA-C8D5404D8034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D906C20-A817-4E75-BF11-9559DDBFB7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D906C20-A817-4E75-BF11-9559DDBFB7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D906C20-A817-4E75-BF11-9559DDBFB7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D906C20-A817-4E75-BF11-9559DDBFB7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
