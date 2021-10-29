@@ -1,0 +1,29 @@
+﻿@page "/setup"
+
+<h1>Setup</h1>
+
+@if (BridgeConfiguration == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="@BridgeConfiguration">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Philips Hue Bridge</td>
+                    <td>
+                        <InputSelect @bind-Value="BridgeConfiguration.Id">
+                            @foreach (var bridge in BridgeConfiguration.DiscoveredHueBridges)
+                            {
+                                <option value="@bridge.Id">@bridge.DisplayName</option>
+                            }
+                        </InputSelect>
+                        <button @onclick="UseSelectedBridge" disabled="@BridgeConfiguration.Id == null">Use</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </EditForm>
+}

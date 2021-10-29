@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomator.Api\HomeAutomator.Api.csproj" />
-    <ProjectReference Include="..\HomeAutomator.Hue.Services\HomeAutomator.Hue.Services.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Hue.Persistence\HomeAutomator.Hue.Persistence.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Hue.Bridge\HomeAutomator.Hue.Bridge.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Web.Client\HomeAutomator.Web.Client.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Web\HomeAutomator.Web.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,11 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator", "HomeAutoma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue", "HomeAutomator.Hue\HomeAutomator.Hue.csproj", "{3193819B-1B68-4BFF-B171-6CFC6CFD8A70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Persistance", "HomeAutomator.Hue.Persistance\HomeAutomator.Hue.Persistance.csproj", "{C7AB0917-6981-4B77-BAFA-C8D5404D8034}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Persistence", "HomeAutomator.Hue.Persistence\HomeAutomator.Hue.Persistence.csproj", "{C7AB0917-6981-4B77-BAFA-C8D5404D8034}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Services", "HomeAutomator.Hue.Services\HomeAutomator.Hue.Services.csproj", "{0D906C20-A817-4E75-BF11-9559DDBFB7D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Hue.Bridge", "HomeAutomator.Hue.Bridge\HomeAutomator.Hue.Bridge.csproj", "{0D906C20-A817-4E75-BF11-9559DDBFB7D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Api", "HomeAutomator.Api\HomeAutomator.Api.csproj", "{76A4235D-BA39-445E-9CE9-586DA5BE447B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Api", "HomeAutomator.Api\HomeAutomator.Api.csproj", "{76A4235D-BA39-445E-9CE9-586DA5BE447B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Startup", "Startup", "{DD5E1526-A1E2-4F2B-9C76-1AC11C7CBD9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{809157A3-A2F5-430B-BBE9-FC062FF6C915}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{E0A4EBDD-EB8A-4C2C-AE9F-4AC34455D652}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hue", "Hue", "{62A5601E-0864-4684-8E9A-BE921639CF70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Web", "HomeAutomator.Web\HomeAutomator.Web.csproj", "{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Web.Client", "HomeAutomator.Web.Client\HomeAutomator.Web.Client.csproj", "{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Web.Shared", "HomeAutomator.Web.Shared\HomeAutomator.Web.Shared.csproj", "{399B83FD-D45F-4304-AB1B-AD12655BED7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D47AAC24-73EC-4142-841F-77BDB55E7B81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.FileStorage", "HomeAutomator.FileStorage\HomeAutomator.FileStorage.csproj", "{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +57,37 @@ Global
 		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76A4235D-BA39-445E-9CE9-586DA5BE447B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399B83FD-D45F-4304-AB1B-AD12655BED7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399B83FD-D45F-4304-AB1B-AD12655BED7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399B83FD-D45F-4304-AB1B-AD12655BED7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399B83FD-D45F-4304-AB1B-AD12655BED7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D} = {DD5E1526-A1E2-4F2B-9C76-1AC11C7CBD9C}
+		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70} = {62A5601E-0864-4684-8E9A-BE921639CF70}
+		{C7AB0917-6981-4B77-BAFA-C8D5404D8034} = {62A5601E-0864-4684-8E9A-BE921639CF70}
+		{0D906C20-A817-4E75-BF11-9559DDBFB7D2} = {62A5601E-0864-4684-8E9A-BE921639CF70}
+		{76A4235D-BA39-445E-9CE9-586DA5BE447B} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
+		{62A5601E-0864-4684-8E9A-BE921639CF70} = {E0A4EBDD-EB8A-4C2C-AE9F-4AC34455D652}
+		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
+		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
+		{399B83FD-D45F-4304-AB1B-AD12655BED7B} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB} = {D47AAC24-73EC-4142-841F-77BDB55E7B81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {970F2843-B90D-4BF8-B8AC-8F71D6E099EE}

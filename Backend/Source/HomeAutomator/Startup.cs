@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HomeAutomator.Hue.Services;
+using HomeAutomator.FileStorage;
+using HomeAutomator.Hue.Bridge;
+using HomeAutomator.Hue.Persistence;
+using Microsoft.AspNetCore.Http;
 
 namespace HomeAutomator
 {
@@ -27,11 +25,15 @@ namespace HomeAutomator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHueServices();
+            services.AddFileStorage();
+            services.AddHueBridge();
+            services.AddHueRepository();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeAutomator", Version = "v1" });
+                c.SwaggerDoc("api", new OpenApiInfo { Title = "HomeAutomator MobileApp API" });
+                c.SwaggerDoc("web", new OpenApiInfo { Title = "HomeAutomator WebClient API" });
+                c.ResolveConflictingActions(x => x.First());
             });
         }
 
@@ -41,14 +43,30 @@ namespace HomeAutomator
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeAutomator v1"));
+                app.UseWebAssemblyDebugging();
+
+                app.UseSwagger(o =>
+                {
+                    o.RouteTemplate = "swagger/{documentName}/swagger.json";
+                    o.SerializeAsV2 = true;
+                });
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/api/swagger.json", "HomeAutomator MobileApp API");
+                    c.SwaggerEndpoint("/swagger/web/swagger.json", "HomeAutomator WebClient API");
+                    c.RoutePrefix = "swagger";
+                });
+            }
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-
+            app.UseBlazorFrameworkFiles();
+            app.UseStaticFiles();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

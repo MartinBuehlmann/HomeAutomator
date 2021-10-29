@@ -9,4 +9,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomator.Hue\HomeAutomator.Hue.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Web.Shared\HomeAutomator.Web.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
