@@ -9,7 +9,16 @@ namespace HomeAutomator.FileStorage
 
         public FileStorage()
         {
-            this.directory = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+            this.directory = Path.Combine(Directory.GetCurrentDirectory(), "../Data");
+            EnsureDataDirectoryExists();
+        }
+
+        private void EnsureDataDirectoryExists()
+        {
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
         }
 
         public T? Read<T>(string file)

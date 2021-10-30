@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HomeAutomator.Hue;
 using HomeAutomator.Hue.Domain;
-using HomeAutomator.Web.Shared.Hue.Configuration;
+using HomeAutomator.Web.Shared.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeAutomator.Web.Hue.Configuration
@@ -27,26 +28,23 @@ namespace HomeAutomator.Web.Hue.Configuration
         {
             IReadOnlyList<HueBridge> bridges = await this.hueBridge.DiscoverBridgesAsync();
             string? registeredBridgeId = this.hueRepository.RetrieveCurrentBridgeId();
-            return new JsonResult(new HueBridgeConfigurationModel
-            {
-                Id = registeredBridgeId,
-                DiscoveredHueBridges = new[] {new HueBridgeModel(null, "--- None ---")}
+            return new JsonResult(new ConfigurationEditModel(
+                registeredBridgeId ?? string.Empty,
+                new[] { new HueBridgeModel(string.Empty, "--- None ---") }
                     .Concat(
                         bridges.Select(x =>
                             new HueBridgeModel(x.BridgeId, $"{x.BridgeId} ({x.IpAddress})")))
-                    .ToArray()
-            });
+                    .ToArray()));
         }
 
-        [HttpPost("id")]
-        public async Task<IActionResult> UseBridge(string id)
+        [HttpPost]
+        public async Task<IActionResult> UseBridge([FromBody] ConfigurationSaveModel model)
         {
-            HueAppRegistration? hueAppKey = this.hueRepository.RetrieveHueAppKeyByBridgeId(id);
+            HueAppRegistration? hueAppKey = this.hueRepository.RetrieveHueAppKeyByBridgeId(model.BridgeId);
             if (hueAppKey == null)
             {
-                HueBridge bridge = (await this.hueBridge.DiscoverBridgesAsync()).Single(x => x.BridgeId == id);
-                hueAppKey = await this.hueBridge.RegisterAppAsync(bridge, "HomeAutomator",
-                    "Device"); // TODO: Discover unique device name
+                HueBridge bridge = (await this.hueBridge.DiscoverBridgesAsync()).Single(x => x.BridgeId == model.BridgeId);
+                hueAppKey = await this.hueBridge.RegisterAppAsync(bridge, "HomeAutomator", Environment.MachineName);
 
                 if (hueAppKey != null)
                 {
@@ -56,7 +54,7 @@ namespace HomeAutomator.Web.Hue.Configuration
 
             if (hueAppKey != null)
             {
-                this.hueRepository.SaveOrUpdateCurrentBridgeId(id);
+                this.hueRepository.SaveOrUpdateCurrentBridgeId(model.BridgeId);
                 return new OkResult();
             }
 

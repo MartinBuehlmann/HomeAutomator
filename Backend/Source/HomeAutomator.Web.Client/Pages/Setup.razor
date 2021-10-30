@@ -2,28 +2,45 @@
 
 <h1>Setup</h1>
 
-@if (BridgeConfiguration == null)
+@if (!DiscoveredHueBridges.Any())
 {
-    <p><em>Loading...</em></p>
+    <p>
+        <em>Loading...</em>
+    </p>
 }
 else
 {
-    <EditForm Model="@BridgeConfiguration">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td>Philips Hue Bridge</td>
-                    <td>
-                        <InputSelect @bind-Value="BridgeConfiguration.Id">
-                            @foreach (var bridge in BridgeConfiguration.DiscoveredHueBridges)
-                            {
-                                <option value="@bridge.Id">@bridge.DisplayName</option>
-                            }
-                        </InputSelect>
-                        <button @onclick="UseSelectedBridge" disabled="@BridgeConfiguration.Id == null">Use</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </EditForm>
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>Philips Hue Bridge</td>
+            <td>
+                <select @bind="this.SelectedBridgeId">
+                    @foreach (var bridge in this.DiscoveredHueBridges)
+                    {
+                        <option value="@bridge.Id">@bridge.DisplayName</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <button @onclick="UseSelectedBridge" disabled="@(!CanUseSelectedBridge)">
+                    <span class="oi oi-check" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Registered Devices</td>
+            <td>
+                <select disabled="@true">
+                    <option>--- None ---</option>
+                </select>
+            </td>
+            <td>
+                <button disabled="@true">
+                    <span class="oi oi-ban" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 }

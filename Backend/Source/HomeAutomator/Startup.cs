@@ -28,6 +28,7 @@ namespace HomeAutomator
             services.AddFileStorage();
             services.AddHueBridge();
             services.AddHueRepository();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -63,7 +64,7 @@ namespace HomeAutomator
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();

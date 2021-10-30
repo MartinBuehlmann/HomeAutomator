@@ -18,7 +18,12 @@ namespace HomeAutomator
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging => logging
+                    .ClearProviders()
+                    .AddConsole())
                 .ConfigureWebHostDefaults(webBuilder => webBuilder
+                    .UseKestrel()
+                    .UseUrls("http://*:5000")
                     .UseStartup<Startup>());
     }
 }
