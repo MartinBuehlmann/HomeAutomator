@@ -6,7 +6,7 @@ namespace HomeAutomator.FileStorage
     {
         public static IServiceCollection AddFileStorage(this IServiceCollection services)
         {
-            services.AddTransient<IFileStorage, FileStorage>();
+            services.AddSingleton<IFileStorage, FileStorage>();
             return services;
         }
     }

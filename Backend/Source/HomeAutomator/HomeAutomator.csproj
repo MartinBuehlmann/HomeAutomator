@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomator.Api\HomeAutomator.Api.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Devices.Persistence\HomeAutomator.Devices.Persistence.csproj" />
     <ProjectReference Include="..\HomeAutomator.Hue.Persistence\HomeAutomator.Hue.Persistence.csproj" />
     <ProjectReference Include="..\HomeAutomator.Hue.Bridge\HomeAutomator.Hue.Bridge.csproj" />
     <ProjectReference Include="..\HomeAutomator.Web.Client\HomeAutomator.Web.Client.csproj" />

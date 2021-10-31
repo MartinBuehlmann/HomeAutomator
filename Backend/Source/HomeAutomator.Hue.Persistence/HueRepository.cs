@@ -7,8 +7,9 @@ namespace HomeAutomator.Hue.Persistence
 {
     internal class HueRepository : IHueRepository
     {
-        private const string HueAppRegistrationsName = nameof(HueAppRegistrations);
-        private const string UsedHueBridgeName = nameof(UsedHueBridge);
+        private const string Prefix = "Hue_";
+        private const string HueAppRegistrationsName = Prefix + nameof(HueAppRegistrations);
+        private const string UsedHueBridgeName = Prefix + nameof(UsedHueBridge);
         private readonly IFileStorage fileStorage;
 
         public HueRepository(IFileStorage fileStorage)
@@ -37,17 +38,9 @@ namespace HomeAutomator.Hue.Persistence
 
         public void AddOrUpdateHueAppRegistration(HueAppRegistration hueAppRegistration)
         {
-            var hueAppKeys = this.fileStorage.Read<HueAppRegistrations>(HueAppRegistrationsName);
-
-            if (hueAppKeys == null)
-            {
-                hueAppKeys = new HueAppRegistrations();
-            }
-            else
-            {
-                hueAppKeys.Items.RemoveAll(x => x.BridgeId == hueAppRegistration.BridgeId);
-            }
-
+            var hueAppKeys = this.fileStorage.Read<HueAppRegistrations>(HueAppRegistrationsName) ??
+                             new HueAppRegistrations();
+            hueAppKeys.Items.RemoveAll(x => x.BridgeId == hueAppRegistration.BridgeId);
             hueAppKeys.Items.Add(hueAppRegistration);
             this.fileStorage.Write(hueAppKeys, HueAppRegistrationsName);
         }

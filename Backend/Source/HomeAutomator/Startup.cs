@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeAutomator.Devices.Persistence;
 using HomeAutomator.FileStorage;
 using HomeAutomator.Hue.Bridge;
 using HomeAutomator.Hue.Persistence;
@@ -28,6 +29,7 @@ namespace HomeAutomator
             services.AddFileStorage();
             services.AddHueBridge();
             services.AddHueRepository();
+            services.AddDeviceRepository();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
