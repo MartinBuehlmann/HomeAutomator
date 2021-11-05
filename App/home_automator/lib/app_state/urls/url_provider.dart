@@ -9,7 +9,7 @@ class UrlProvider {
 
   Future<void> load(String backendUrl) async {
     final urls =
-        await HttpClientWrapper.get('http://' + backendUrl + ':5000/api/home');
+        await HttpClientWrapper.get('http://' + backendUrl + '/api/home');
     _devices = urls['devices']['href'];
     _nfcTags = urls['nfcTags']['href'];
   }

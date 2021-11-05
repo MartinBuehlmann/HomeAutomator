@@ -41,17 +41,11 @@ namespace HomeAutomator
                 c.ResolveConflictingActions(x => x.First());
             });
 
-            services.Configure<ForwardedHeadersOptions>(
-                options =>
-                {
-                    options.ForwardedHeaders =
-                        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto |
-                        ForwardedHeaders.XForwardedHost | ForwardedHeaders.XForwardedHost;
-                    options.ForwardedHostHeaderName = "X-Original-Host";
-
-                    options.KnownNetworks.Clear(); // its loopback by default
-                    options.KnownProxies.Clear();
-                });
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +54,7 @@ namespace HomeAutomator
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseForwardedHeaders();
                 app.UseWebAssemblyDebugging();
 
                 app.UseSwagger(o =>
@@ -77,20 +72,17 @@ namespace HomeAutomator
             else
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseForwardedHeaders();
                 app.UseHsts();
             }
 
-            app.UseForwardedHeaders();
             //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
