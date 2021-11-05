@@ -28,13 +28,13 @@ namespace HomeAutomator.FileStorage
         public T? Read<T>(string file)
         {
             string filePath = Path.Combine(this.directory, $"{file}.json");
-            if (!File.Exists(filePath))
+            lock (this.fileLocks.GetOrAdd(file, (_) => new object()))
             {
-                return default(T);
-            }
+                if (!File.Exists(filePath))
+                {
+                    return default(T);
+                }
 
-            lock (this.fileLocks.GetOrAdd(filePath, (_) => new object()))
-            {
                 string jsonResult = File.ReadAllText(filePath);
                 return JsonConvert.DeserializeObject<T>(jsonResult);
             }
@@ -43,7 +43,7 @@ namespace HomeAutomator.FileStorage
         public void Write<T>(T? data, string file)
         {
             string filePath = Path.Combine(this.directory, $"{file}.json");
-            lock (this.fileLocks.GetOrAdd(filePath, (_) => new object()))
+            lock (this.fileLocks.GetOrAdd(file, (_) => new object()))
             {
                 string jsonResult = JsonConvert.SerializeObject(data);
                 File.WriteAllText(filePath, jsonResult);

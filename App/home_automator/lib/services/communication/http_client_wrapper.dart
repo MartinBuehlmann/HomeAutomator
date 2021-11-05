@@ -8,10 +8,14 @@ class HttpClientWrapper {
         headers: _getHeaders(),
       );
 
-  static Future<dynamic> get(String url) async => http.get(
-        Uri.parse(url),
-        headers: _getHeaders(),
-      );
+  static Future<dynamic> get(String url) async {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: _getHeaders(),
+    );
+
+    return jsonDecode(response.body);
+  }
 
   static Future head(String url) async => http.head(
         Uri.parse(url),

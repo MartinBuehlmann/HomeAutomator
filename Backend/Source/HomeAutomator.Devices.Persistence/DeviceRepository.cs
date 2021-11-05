@@ -24,12 +24,13 @@ namespace HomeAutomator.Devices.Persistence
             return deviceRegistrations?.Items.SingleOrDefault(x => x.DeviceId == deviceId);
         }
 
-        public void AddOrUpdateDeviceRegistration(string deviceId)
+        // TODO: Make thread safe
+        public void AddOrUpdateDeviceRegistration(string deviceId, string deviceName)
         {
             var deviceRegistrations = this.fileStorage.Read<DeviceRegistrations>(DeviceRegistrationsName) ??
                                       new DeviceRegistrations();
             deviceRegistrations.Items.RemoveAll(x => x.DeviceId == deviceId);
-            deviceRegistrations.Items.Add(new DeviceRegistration(deviceId, DateTimeOffset.UtcNow));
+            deviceRegistrations.Items.Add(new DeviceRegistration(deviceId, deviceName, DateTimeOffset.UtcNow));
             this.fileStorage.Write(deviceRegistrations, DeviceRegistrationsName);
         }
     }

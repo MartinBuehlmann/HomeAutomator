@@ -5,12 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Linq;
-using System.Threading.Tasks;
 using HomeAutomator.Devices.Persistence;
 using HomeAutomator.FileStorage;
 using HomeAutomator.Hue.Bridge;
 using HomeAutomator.Hue.Persistence;
-using Microsoft.AspNetCore.Http;
+using HomeAutomator.NfcTags.Persistence;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace HomeAutomator
 {
@@ -28,16 +28,30 @@ namespace HomeAutomator
         {
             services.AddFileStorage();
             services.AddHueBridge();
-            services.AddHueRepository();
-            services.AddDeviceRepository();
-            
+            services.AddHuePersistence();
+            services.AddDevicesPersistence();
+            services.AddNfcTagsPersistence();
+
             services.AddControllers();
+            services.AddCommonServices();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("api", new OpenApiInfo { Title = "HomeAutomator MobileApp API" });
                 c.SwaggerDoc("web", new OpenApiInfo { Title = "HomeAutomator WebClient API" });
                 c.ResolveConflictingActions(x => x.First());
             });
+
+            services.Configure<ForwardedHeadersOptions>(
+                options =>
+                {
+                    options.ForwardedHeaders =
+                        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto |
+                        ForwardedHeaders.XForwardedHost | ForwardedHeaders.XForwardedHost;
+                    options.ForwardedHostHeaderName = "X-Original-Host";
+
+                    options.KnownNetworks.Clear(); // its loopback by default
+                    options.KnownProxies.Clear();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +80,7 @@ namespace HomeAutomator
                 app.UseHsts();
             }
 
+            app.UseForwardedHeaders();
             //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();

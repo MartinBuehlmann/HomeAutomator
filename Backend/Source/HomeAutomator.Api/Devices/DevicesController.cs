@@ -31,7 +31,7 @@ namespace HomeAutomator.Api.Devices
         [HttpPut]
         public IActionResult RegisterDevice([FromBody] DeviceRegistrationInfo deviceRegistration)
         {
-            this.deviceRepository.AddOrUpdateDeviceRegistration(deviceRegistration.DeviceId);
+            this.deviceRepository.AddOrUpdateDeviceRegistration(deviceRegistration.DeviceId, deviceRegistration.DeviceName);
             return Ok();
         }
     }

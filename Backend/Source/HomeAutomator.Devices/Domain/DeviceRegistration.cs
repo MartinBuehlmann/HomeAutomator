@@ -6,13 +6,17 @@ namespace HomeAutomation.Devices.Domain
     {
         public DeviceRegistration(
             string deviceId,
+            string deviceName,
             DateTimeOffset registrationDateTime)
         {
-            DeviceId = deviceId;
-            RegistrationDateTime = registrationDateTime;
+            this.DeviceId = deviceId;
+            this.DeviceName = deviceName;
+            this.RegistrationDateTime = registrationDateTime;
         }
 
         public string DeviceId { get; }
+        
+        public string DeviceName { get; }
 
         public DateTimeOffset RegistrationDateTime { get; }
     }

@@ -23,4 +23,23 @@ mixin DeviceInfoWrapper {
 
     return deviceId;
   }
+
+  static Future<String> retrieveDeviceName() async {
+    String? deviceName;
+    if (Platform.isAndroid) {
+      var info = await _deviceInfoPlugin.androidInfo;
+      deviceName = '${info.brand} ${info.device} (${info.model})';
+    } else if (Platform.isIOS) {
+      var info = await _deviceInfoPlugin.iosInfo;
+      deviceName = '${info.name} ${info.model} (${info.systemVersion})';
+    } else {
+      throw Exception('Unsupported operation system.');
+    }
+
+    if (deviceName == null) {
+      throw Exception('DeviceId is null');
+    }
+
+    return deviceName;
+  }
 }

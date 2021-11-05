@@ -1,11 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:home_automator/app_state/nfc/nfc_provider.dart';
+import 'package:home_automator/app_state/urls/url_provider.dart';
 import 'package:home_automator/services/communication/http_client_wrapper.dart';
 import 'package:home_automator/services/device_info/device_info_wrapper.dart';
 import 'package:home_automator/services/store/secure_storage_wrapper.dart';
 
 class AuthProvider extends ChangeNotifier {
+  AuthProvider(this._urlProvider, this._nfcProvider);
+
+  final UrlProvider _urlProvider;
+  final NfcProvider _nfcProvider;
+
   bool _isLoggingIn = false;
   bool _isLoggedIn = false;
 
@@ -20,13 +25,15 @@ class AuthProvider extends ChangeNotifier {
       return;
     }
 
-    final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
+    await _urlProvider.load(backendAddress);
 
+    final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
     final response = await await HttpClientWrapper.head(
-        'http://' + backendAddress + ':5000/api/Devices/' + deviceId);
+        _urlProvider.devices + '/' + deviceId);
 
     if (response.statusCode == 200) {
       _isLoggedIn = true;
+      _nfcProvider.initialize();
     } else {
       _isLoggedIn = false;
     }
@@ -39,16 +46,21 @@ class AuthProvider extends ChangeNotifier {
       _isLoggingIn = true;
       notifyListeners();
 
+      await _urlProvider.load(backendAddress);
       final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
-
+      final deviceName = await DeviceInfoWrapper.retrieveDeviceName();
       final response = await HttpClientWrapper.put(
-        'http://' + backendAddress + ':5000/api/Devices',
-        {'deviceId': deviceId},
+        _urlProvider.devices,
+        {
+          'deviceId': deviceId,
+          'deviceName': deviceName,
+        },
       );
 
       if (response.statusCode == 200) {
         _isLoggedIn = true;
         await SecureStorageWrapper.saveBackendAddress(backendAddress);
+        _nfcProvider.initialize();
       } else {
         await SecureStorageWrapper.deleteBackendUrl();
         _isLoggedIn = false;
@@ -62,6 +74,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> signOut() async {
     await SecureStorageWrapper.deleteBackendUrl();
     _isLoggedIn = false;
+    _nfcProvider.uninitialize();
     notifyListeners();
   }
 }

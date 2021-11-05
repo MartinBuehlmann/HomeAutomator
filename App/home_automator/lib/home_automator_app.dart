@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_automator/app_state/auth/auth_provider.dart';
+import 'package:home_automator/pages/dashboard/dashboard_page.dart';
 import 'package:home_automator/pages/login_page/log_in_page.dart';
 import 'package:home_automator/pages/home/home_page.dart';
+import 'package:home_automator/widgets/app_name_widget.dart';
 import 'package:home_automator/widgets/busy_indicator_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +20,10 @@ class HomeAutomatorApp extends StatelessWidget {
     return Consumer<AuthProvider>(
       builder: (_, auth, __) {
         if (auth.isLoggedIn) {
-          return const HomePage(title: 'Flutter Demo Home Page');
+          return const HomePage(
+            content: DashboardPage(),
+            title: 'Übersicht',
+          );
         }
 
         return SafeArea(
@@ -33,7 +39,7 @@ class HomeAutomatorApp extends StatelessWidget {
                 return loginPage;
               },
             ),
-            if (auth.isLoggingIn) BusyIndicatorWidget(),
+            if (auth.isLoggingIn) const BusyIndicatorWidget(),
           ],
         ));
       },

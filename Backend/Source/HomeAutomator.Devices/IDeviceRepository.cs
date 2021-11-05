@@ -7,6 +7,6 @@ namespace HomeAutomation.Devices
     {
         DeviceRegistration RetrieveDeviceRegistrationByDeviceId(string deviceId);
         
-        void AddOrUpdateDeviceRegistration(string deviceId);
+        void AddOrUpdateDeviceRegistration(string deviceId, string deviceName);
     }
 }
