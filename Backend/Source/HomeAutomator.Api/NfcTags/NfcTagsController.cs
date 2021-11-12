@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HomeAutomator.NfcTags;
+using HomeAutomator.NfcTags.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeAutomator.Api.NfcTags
 {
-    [Route(ApiConstants.Route + "/[controller]")]
     public class NfcTagsController : ApiController
     {
         private readonly INfcTagsRepository nfcTagsRepository;
@@ -27,11 +27,17 @@ namespace HomeAutomator.Api.NfcTags
         [HttpGet("{identifier}")]
         public IActionResult Retrieve(string identifier)
         {
-            IReadOnlyList<NfcTagInfo> nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
+            NfcTagInfo? nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
                 .Where(x => x.TagId == identifier)
                 .Select(x => new NfcTagInfo(x.TagId, x.TagName))
-                .ToList();
-            return new JsonResult(nfcTags);
+                .SingleOrDefault();
+
+            if (nfcTags != null)
+            {
+                return new JsonResult(nfcTags);
+            }
+
+            return NotFound();
         }
 
         [HttpPut]

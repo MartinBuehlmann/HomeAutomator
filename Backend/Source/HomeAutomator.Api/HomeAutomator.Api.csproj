@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomator.Devices\HomeAutomator.Devices.csproj" />
+    <ProjectReference Include="..\HomeAutomator.Hue\HomeAutomator.Hue.csproj" />
     <ProjectReference Include="..\HomeAutomator.NfcTags\HomeAutomator.NfcTags.csproj" />
   </ItemGroup>
 

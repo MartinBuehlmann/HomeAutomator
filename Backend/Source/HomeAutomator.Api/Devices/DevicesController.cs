@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeAutomator.Api.Devices
 {
-    [Route(ApiConstants.Route + "/[controller]")]
     public class DevicesController : ApiController
     {
         private readonly IDeviceRepository deviceRepository;

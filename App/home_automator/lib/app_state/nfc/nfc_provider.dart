@@ -1,10 +1,21 @@
 import 'package:flutter/cupertino.dart';
+import 'package:home_automator/app_state/nfc/nfc_tag_data.dart';
+import 'package:home_automator/app_state/urls/url_provider.dart';
+import 'package:home_automator/services/communication/http_client_wrapper.dart';
+import 'package:home_automator/services/communication/http_request_exception.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 
 class NfcProvider extends ChangeNotifier {
-  String _tagId = '';
+  NfcProvider(this._urlProvider);
 
-  String get tagId => _tagId;
+  final UrlProvider _urlProvider;
+  NfcTagData _nfcTag = NfcTagData('', '');
+
+  NfcTagData retrieve() {
+    final nfcTag = _nfcTag;
+    _nfcTag = NfcTagData('', '');
+    return nfcTag;
+  }
 
   Future initialize() async {
     if (await NfcManager.instance.isAvailable()) {
@@ -19,8 +30,20 @@ class NfcProvider extends ChangeNotifier {
               .toString();
         }
 
-        if (tagId != _tagId) {
-          _tagId = tagId;
+        if (tagId != _nfcTag.tagId) {
+          try {
+            final loadedNfcTag =
+                await HttpClientWrapper.get(_urlProvider.nfcTags + '/' + tagId);
+
+            if (loadedNfcTag.isEmpty) {
+              _nfcTag = NfcTagData(tagId, '');
+            } else {
+              _nfcTag =
+                  NfcTagData(loadedNfcTag['tagId'], loadedNfcTag['tagName']);
+            }
+          } on HttpRequestException {
+            _nfcTag = NfcTagData(tagId, '');
+          }
           notifyListeners();
         }
       });

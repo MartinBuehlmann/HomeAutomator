@@ -25,10 +25,11 @@ class TextFieldWidget extends StatelessWidget {
           children: <Widget>[
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style:
+                  const TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
             ),
             const SizedBox(
-              height: 10,
+              height: 7,
             ),
             TextField(
                 autofocus: isFocussed,
@@ -36,9 +37,10 @@ class TextFieldWidget extends StatelessWidget {
                 style: const TextStyle(color: Colors.black),
                 controller: controller,
                 obscureText: isPassword,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                    isDense: true,
                     border: InputBorder.none,
-                    fillColor: Color(0xfff3f3f4),
+                    fillColor: isEnabled ? Colors.white : Colors.white54,
                     filled: true))
           ],
         ),

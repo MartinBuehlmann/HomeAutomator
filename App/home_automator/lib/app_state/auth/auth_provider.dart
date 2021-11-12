@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_automator/app_state/nfc/nfc_provider.dart';
 import 'package:home_automator/app_state/urls/url_provider.dart';
 import 'package:home_automator/services/communication/http_client_wrapper.dart';
+import 'package:home_automator/services/communication/http_request_exception.dart';
 import 'package:home_automator/services/device_info/device_info_wrapper.dart';
 import 'package:home_automator/services/store/secure_storage_wrapper.dart';
 
@@ -25,16 +26,15 @@ class AuthProvider extends ChangeNotifier {
       return;
     }
 
-    await _urlProvider.load(backendAddress);
+    try {
+      await _urlProvider.load(backendAddress);
 
-    final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
-    final response = await await HttpClientWrapper.head(
-        _urlProvider.devices + '/' + deviceId);
+      final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
+      await HttpClientWrapper.head(_urlProvider.devices + '/' + deviceId);
 
-    if (response.statusCode == 200) {
       _isLoggedIn = true;
       _nfcProvider.initialize();
-    } else {
+    } on HttpRequestException {
       _isLoggedIn = false;
     }
 
@@ -49,7 +49,7 @@ class AuthProvider extends ChangeNotifier {
       await _urlProvider.load(backendAddress);
       final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
       final deviceName = await DeviceInfoWrapper.retrieveDeviceName();
-      final response = await HttpClientWrapper.put(
+      await HttpClientWrapper.put(
         _urlProvider.devices,
         {
           'deviceId': deviceId,
@@ -57,14 +57,12 @@ class AuthProvider extends ChangeNotifier {
         },
       );
 
-      if (response.statusCode == 200) {
-        _isLoggedIn = true;
-        await SecureStorageWrapper.saveBackendAddress(backendAddress);
-        _nfcProvider.initialize();
-      } else {
-        await SecureStorageWrapper.deleteBackendUrl();
-        _isLoggedIn = false;
-      }
+      _isLoggedIn = true;
+      await SecureStorageWrapper.saveBackendAddress(backendAddress);
+      _nfcProvider.initialize();
+    } on HttpRequestException {
+      await SecureStorageWrapper.deleteBackendUrl();
+      _isLoggedIn = false;
     } finally {
       _isLoggingIn = false;
       notifyListeners();

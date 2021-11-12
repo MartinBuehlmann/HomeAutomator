@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_automator/app_state/auth/auth_provider.dart';
 import 'package:home_automator/app_state/drawer/drawer_provider.dart';
-import 'package:home_automator/pages/dashboard/dashboard_page.dart';
-import 'package:home_automator/pages/home/home_page.dart';
-import 'package:home_automator/pages/nfc_tags/nfc_tags_page.dart';
-import 'package:home_automator/pages/settings/settings_page.dart';
+import 'package:home_automator/routes.dart';
 import 'package:home_automator/widgets/app_name_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -36,16 +33,11 @@ class SideMenu extends StatelessWidget {
                   title: 'Übersicht',
                   svgSrc: 'assets/icons/menu_dashboard.svg',
                   press: () {
-                    Navigator.of(context).pop();
                     Provider.of<DrawerProvider>(
                       context,
                       listen: false,
                     ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const HomePage(
-                              content: DashboardPage(),
-                              title: 'Übersicht',
-                            )));
+                    Navigator.of(context).pushReplacementNamed(Routes.dashboard);
                   }),
               DrawerListTile(
                   title: 'NFC Tags',
@@ -55,11 +47,7 @@ class SideMenu extends StatelessWidget {
                       context,
                       listen: false,
                     ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const HomePage(
-                              content: NfcTagsPage(),
-                              title: 'NFC Tags',
-                            )));
+                    Navigator.of(context).pushReplacementNamed(Routes.nfcTags);
                   }),
               DrawerListTile(
                   title: 'Einstellungen',
@@ -69,18 +57,13 @@ class SideMenu extends StatelessWidget {
                       context,
                       listen: false,
                     ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const HomePage(
-                              content: SettingsPage(),
-                              title: 'Einstellungen',
-                            )));
+                    Navigator.of(context).pushReplacementNamed(Routes.settings);
                   }),
               DrawerListTile(
                 title: 'Abmelden',
                 svgSrc: 'assets/icons/menu_profile.svg',
                 press: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                  auth.signOut();
+                  auth.signOut().then((value) => Navigator.of(context).pushReplacementNamed(Routes.home));
                 },
               ),
             ],
@@ -106,14 +89,16 @@ class DrawerListTile extends StatelessWidget {
     return ListTile(
       onTap: press,
       horizontalTitleGap: 0.0,
-      leading: SvgPicture.asset(
-        svgSrc,
-        color: Colors.white54,
-        height: 16,
-      ),
+      leading: Container(
+          padding: const EdgeInsets.all(4),
+          child: SvgPicture.asset(
+            svgSrc,
+            color: Colors.white70,
+            height: 16,
+          )),
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white54),
+        style: const TextStyle(color: Colors.white70, fontSize: 16),
       ),
     );
   }

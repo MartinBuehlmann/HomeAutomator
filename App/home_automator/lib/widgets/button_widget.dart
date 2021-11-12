@@ -48,7 +48,7 @@ class ButtonWidget extends StatelessWidget {
             gradient: background),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 20, color: Colors.white),
+          style: const TextStyle(fontSize: 16, color: Colors.white),
         ),
       );
 }

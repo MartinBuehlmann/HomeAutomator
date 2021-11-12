@@ -17,7 +17,7 @@ sudo service nginx start
 
 3. Adapt Nginx Configuration
 ```
-sudo nano /etc/nginx/sites'available/default
+sudo nano /etc/nginx/sites-available/default
 ```
 Adapt location settings like this:
 ```

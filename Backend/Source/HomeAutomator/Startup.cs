@@ -56,18 +56,6 @@ namespace HomeAutomator
                 app.UseDeveloperExceptionPage();
                 app.UseForwardedHeaders();
                 app.UseWebAssemblyDebugging();
-
-                app.UseSwagger(o =>
-                {
-                    o.RouteTemplate = "swagger/{documentName}/swagger.json";
-                    o.SerializeAsV2 = true;
-                });
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/api/swagger.json", "HomeAutomator MobileApp API");
-                    c.SwaggerEndpoint("/swagger/web/swagger.json", "HomeAutomator WebClient API");
-                    c.RoutePrefix = "swagger";
-                });
             }
             else
             {
@@ -75,6 +63,18 @@ namespace HomeAutomator
                 app.UseForwardedHeaders();
                 app.UseHsts();
             }
+
+            app.UseSwagger(o =>
+            {
+                o.RouteTemplate = "swagger/{documentName}/swagger.json";
+                o.SerializeAsV2 = true;
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/api/swagger.json", "HomeAutomator MobileApp API");
+                c.SwaggerEndpoint("/swagger/web/swagger.json", "HomeAutomator WebClient API");
+                c.RoutePrefix = "swagger";
+            });
 
             //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();

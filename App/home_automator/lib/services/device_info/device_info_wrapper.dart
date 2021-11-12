@@ -25,7 +25,7 @@ mixin DeviceInfoWrapper {
   }
 
   static Future<String> retrieveDeviceName() async {
-    String? deviceName;
+    String deviceName = 'Development';
     if (Platform.isAndroid) {
       var info = await _deviceInfoPlugin.androidInfo;
       deviceName = '${info.brand} ${info.device} (${info.model})';
@@ -34,10 +34,6 @@ mixin DeviceInfoWrapper {
       deviceName = '${info.name} ${info.model} (${info.systemVersion})';
     } else {
       throw Exception('Unsupported operation system.');
-    }
-
-    if (deviceName == null) {
-      throw Exception('DeviceId is null');
     }
 
     return deviceName;

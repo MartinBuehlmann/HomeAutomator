@@ -21,40 +21,36 @@ class _LogInPageState extends State<LogInPage> {
     final height = MediaQuery.of(context).size.height;
     return Consumer<AuthProvider>(
       builder: (context, auth, _) => Scaffold(
-        body: SizedBox(
-          height: height,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                  top: -height * .15,
-                  right: -MediaQuery.of(context).size.width * .4,
-                  child: Container()),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: height * .2),
-                      const AppNameWidget(30),
-                      const SizedBox(height: 30),
-                      TextFieldWidget(
-                        title: 'Netzwerk Adresse',
-                        controller: deviceAddressController,
-                        isFocussed: true,
-                      ),
-                      const SizedBox(height: 20),
-                      ButtonWidget(
-                        text: 'Verbinden',
-                        onPressed: () =>
-                            auth.signIn(deviceAddressController.text),
-                      )
-                    ],
+        body: SafeArea(
+          child: SizedBox(
+            height: height,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: height * .15),
+                        const AppNameWidget(30),
+                        SizedBox(height: height * .07),
+                        TextFieldWidget(
+                          title: 'Netzwerk Adresse',
+                          controller: deviceAddressController,
+                          isFocussed: true,
+                        ),
+                        const SizedBox(height: 16),
+                        ButtonWidget(
+                          text: 'Verbinden',
+                          onPressed: () =>
+                              auth.signIn(deviceAddressController.text),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

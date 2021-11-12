@@ -9,5 +9,9 @@ namespace HomeAutomator.Hue
         Task<IReadOnlyList<HueBridge>> DiscoverBridgesAsync();
 
         Task<HueAppRegistration?> RegisterAppAsync(HueBridge bridge, string appName, string deviceName);
+
+        Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
+
+        Task SetLightAsync(HueLight light);
     }
 }

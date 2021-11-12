@@ -18,6 +18,7 @@ namespace HomeAutomator
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSystemd()
                 .ConfigureLogging(logging => logging
                     .ClearProviders()
                     .AddConsole())

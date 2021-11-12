@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace HomeAutomator.Api.Home
 {
-    [Microsoft.AspNetCore.Components.Route(ApiConstants.Route)]
+    [Route(ApiConstants.Route)]
     public class HomeController : ApiController
     {
         private readonly IActionContextAccessor actionContextAccessor;

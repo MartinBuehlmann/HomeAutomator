@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_automator/app_state/auth/auth_provider.dart';
 import 'package:home_automator/pages/dashboard/dashboard_page.dart';
 import 'package:home_automator/pages/login_page/log_in_page.dart';
 import 'package:home_automator/pages/home/home_page.dart';
-import 'package:home_automator/widgets/app_name_widget.dart';
 import 'package:home_automator/widgets/busy_indicator_widget.dart';
 import 'package:provider/provider.dart';
 
-class HomeAutomatorApp extends StatelessWidget {
-  const HomeAutomatorApp({Key? key}) : super(key: key);
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
