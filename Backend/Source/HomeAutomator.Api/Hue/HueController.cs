@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeAutomator.Api.Hue
 {
+    // TODO: Obsolete
     public class HueController : ApiController
     {
         private readonly IHueBridge hueBridge;

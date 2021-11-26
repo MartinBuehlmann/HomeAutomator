@@ -13,5 +13,7 @@ namespace HomeAutomator.Hue
         Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
 
         Task SetLightAsync(HueLight light);
+        
+        Task<IReadOnlyList<HueGroup>> RetrieveGroupsAsync();
     }
 }

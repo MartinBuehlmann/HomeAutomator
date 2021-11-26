@@ -4,7 +4,7 @@ using HomeAutomator.Hue.Domain;
 
 namespace HomeAutomator.Hue.Bridge
 {
-    public interface IHueClient
+    internal interface IHueClient
     {
         Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
 

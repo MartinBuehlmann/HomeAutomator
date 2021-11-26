@@ -3,7 +3,7 @@ using HomeAutomation.Devices.Domain;
 
 namespace HomeAutomator.Devices.Persistence.Entities
 {
-    public class DeviceRegistrations
+    internal class DeviceRegistrations
     {
         public DeviceRegistrations()
         {

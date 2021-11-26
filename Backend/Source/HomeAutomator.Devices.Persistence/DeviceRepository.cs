@@ -7,7 +7,7 @@ using HomeAutomator.FileStorage;
 
 namespace HomeAutomator.Devices.Persistence
 {
-    public class DeviceRepository : IDeviceRepository
+    internal class DeviceRepository : IDeviceRepository
     {
         private const string Prefix = "Devices_";
         private const string DeviceRegistrationsName = Prefix + "DeviceRegistration";
@@ -24,14 +24,13 @@ namespace HomeAutomator.Devices.Persistence
             return deviceRegistrations?.Items.SingleOrDefault(x => x.DeviceId == deviceId);
         }
 
-        // TODO: Make thread safe
         public void AddOrUpdateDeviceRegistration(string deviceId, string deviceName)
         {
-            var deviceRegistrations = this.fileStorage.Read<DeviceRegistrations>(DeviceRegistrationsName) ??
-                                      new DeviceRegistrations();
-            deviceRegistrations.Items.RemoveAll(x => x.DeviceId == deviceId);
-            deviceRegistrations.Items.Add(new DeviceRegistration(deviceId, deviceName, DateTimeOffset.UtcNow));
-            this.fileStorage.Write(deviceRegistrations, DeviceRegistrationsName);
+            this.fileStorage.Update<DeviceRegistrations>(DeviceRegistrationsName, deviceRegistrations =>
+            {
+                deviceRegistrations.Items.RemoveAll(x => x.DeviceId == deviceId);
+                deviceRegistrations.Items.Add(new DeviceRegistration(deviceId, deviceName, DateTimeOffset.UtcNow));
+            });
         }
     }
 }

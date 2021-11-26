@@ -1,4 +1,4 @@
-﻿namespace HomeAutomator.Api.Home
+﻿namespace HomeAutomator.Api
 {
     public class Url
     {

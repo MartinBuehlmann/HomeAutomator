@@ -3,7 +3,7 @@ using HomeAutomator.NfcTags.Domain;
 
 namespace HomeAutomator.NfcTags.Persistence.Entities
 {
-    public class NfcTags
+    internal class NfcTags
     {
         public NfcTags()
         {

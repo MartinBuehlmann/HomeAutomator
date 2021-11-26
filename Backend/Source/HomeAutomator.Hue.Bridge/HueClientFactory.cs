@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HomeAutomator.Hue.Bridge.Mappings;
@@ -12,7 +11,7 @@ using Q42.HueApi.Models.Groups;
 
 namespace HomeAutomator.Hue.Bridge
 {
-    public class HueClientFactory
+    internal class HueClientFactory
     {
         public IHueClient Create(Domain.HueBridge bridge, HueAppRegistration appRegistration)
         {
@@ -20,7 +19,7 @@ namespace HomeAutomator.Hue.Bridge
             hueClient.Initialize(bridge, appRegistration);
             return hueClient;
         }
-        
+
         private class HueClient : IHueClient
         {
             private ILocalHueClient? client;
@@ -50,8 +49,10 @@ namespace HomeAutomator.Hue.Bridge
             {
                 IReadOnlyCollection<Group> groups = await this.client!.GetGroupsAsync();
                 IReadOnlyList<HueLight> lights = await this.RetrieveLightsAsync();
-                return groups.Select(group => new HueGroup(
-                        group.Id, 
+                return groups
+                    .Where(x => x.Type == GroupType.Room)
+                    .Select(group => new HueGroup(
+                        group.Id,
                         group.Name,
                         group.Lights.Select(light => lights.Single(x => x.Id == light)).ToList()))
                     .ToList();

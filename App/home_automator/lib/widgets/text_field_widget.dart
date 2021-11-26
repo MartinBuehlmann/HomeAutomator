@@ -7,6 +7,7 @@ class TextFieldWidget extends StatelessWidget {
     this.isPassword = false,
     this.isFocussed = false,
     this.isEnabled = true,
+    this.focusNode = null,
     required this.title,
     required this.controller,
   }) : super(key: key);
@@ -14,6 +15,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool isPassword;
   final bool isFocussed;
   final bool isEnabled;
+  final FocusNode? focusNode;
   final String title;
   final TextEditingController controller;
 
@@ -32,16 +34,18 @@ class TextFieldWidget extends StatelessWidget {
               height: 7,
             ),
             TextField(
-                autofocus: isFocussed,
-                enabled: isEnabled,
-                style: const TextStyle(color: Colors.black),
-                controller: controller,
-                obscureText: isPassword,
-                decoration: InputDecoration(
-                    isDense: true,
-                    border: InputBorder.none,
-                    fillColor: isEnabled ? Colors.white : Colors.white54,
-                    filled: true))
+              autofocus: isFocussed,
+              enabled: isEnabled,
+              style: const TextStyle(color: Colors.black),
+              controller: controller,
+              obscureText: isPassword,
+              focusNode: focusNode,
+              decoration: InputDecoration(
+                  isDense: true,
+                  border: InputBorder.none,
+                  fillColor: isEnabled ? Colors.white : Colors.white54,
+                  filled: true),
+            )
           ],
         ),
       );

@@ -1,4 +1,4 @@
-set address=192.168.1.20
+set address=192.168.1.25
 set password=raspberry
 cd ..
 cd source

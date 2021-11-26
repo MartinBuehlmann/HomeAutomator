@@ -1,37 +1,30 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Http;
+﻿using HomeAutomator.Api.Devices;
+using HomeAutomator.Api.Lights;
+using HomeAutomator.Api.NfcTags;
+using HomeAutomator.Api.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace HomeAutomator.Api.Home
 {
     [Route(ApiConstants.Route)]
     public class HomeController : ApiController
     {
-        private readonly IActionContextAccessor actionContextAccessor;
-        
-        public HomeController(IActionContextAccessor actionContextAccessor)
+        private readonly UrlBuilder urlBuilder;
+
+        public HomeController(UrlBuilder urlBuilder)
         {
-            this.actionContextAccessor = actionContextAccessor;
+            this.urlBuilder = urlBuilder;
         }
 
         [HttpGet]
         public IActionResult Retrieve()
         {
-            HttpContext httpContext = this.actionContextAccessor.ActionContext.HttpContext;
-
-            var url = new StringBuilder()
-                .Append(httpContext.Request.Scheme)
-                .Append("://")
-                .Append(httpContext.Request.Host)
-                .Append("/")
-                .Append(ApiConstants.Route)
-                .Append("/");
-
-            return new JsonResult(
-                new ApiHomeInfo(
-                    new Url($"{url}devices"),
-                    new Url($"{url}nfctags")));
+                return new JsonResult(
+                    new ApiHomeInfo(
+                        new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(DevicesController))),
+                        new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController))),
+                        new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(SettingsController))),
+                        new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController)))));
         }
     }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_automator/widgets/label_widget.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
@@ -46,9 +47,8 @@ class ButtonWidget extends StatelessWidget {
                   spreadRadius: 2)
             ],
             gradient: background),
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 16, color: Colors.white),
+        child: LabelWidget(
+          text: text,
         ),
       );
 }

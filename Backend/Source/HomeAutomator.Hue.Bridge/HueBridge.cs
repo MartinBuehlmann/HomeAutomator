@@ -74,7 +74,6 @@ namespace HomeAutomator.Hue.Bridge
                 var bridge = bridges.SingleOrDefault(x => x.BridgeId == bridgeId);
                 if (bridge == null)
                 {
-                    // TODO: Throw different exception?
                     throw new InvalidOperationException("Configured bridge is not available.");
                 }
 

@@ -3,7 +3,7 @@ using HomeAutomator.Hue.Domain;
 
 namespace HomeAutomator.Hue.Persistence.Entities
 {
-    public class HueAppRegistrations
+    internal class HueAppRegistrations
     {
         public HueAppRegistrations()
         {

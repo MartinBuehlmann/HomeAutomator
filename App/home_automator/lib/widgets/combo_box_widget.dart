@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_extensions/dart_extensions.dart';
+import 'package:home_automator/widgets/label_widget.dart';
 
 class ComboBoxWidget extends StatefulWidget {
   const ComboBoxWidget({
@@ -61,9 +62,8 @@ class _ComboBoxWidgetState extends State<ComboBoxWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              widget.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            LabelWidget(
+              text: widget.title,
             ),
             const SizedBox(
               height: 10,
@@ -102,4 +102,10 @@ class DropdownItem {
 
   String get displayValue => _displayValue;
   String get value => _value;
+
+  @override
+  bool operator ==(covariant DropdownItem other) => other.value == value;
+
+  @override
+  int get hashCode => value.hashCode;
 }

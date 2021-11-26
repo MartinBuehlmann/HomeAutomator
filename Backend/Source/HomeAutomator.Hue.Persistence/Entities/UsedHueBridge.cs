@@ -1,6 +1,6 @@
 ﻿namespace HomeAutomator.Hue.Persistence.Entities
 {
-    public class UsedHueBridge
+    internal class UsedHueBridge
     {
         public UsedHueBridge(string? bridgeId)
         {

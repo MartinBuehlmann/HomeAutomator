@@ -5,11 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Linq;
+using HomeAutomator.Api;
 using HomeAutomator.Devices.Persistence;
 using HomeAutomator.FileStorage;
 using HomeAutomator.Hue.Bridge;
 using HomeAutomator.Hue.Persistence;
 using HomeAutomator.NfcTags.Persistence;
+using HomeAutomator.Settings.Persistence;
 using Microsoft.AspNetCore.HttpOverrides;
 
 namespace HomeAutomator
@@ -31,6 +33,8 @@ namespace HomeAutomator
             services.AddHuePersistence();
             services.AddDevicesPersistence();
             services.AddNfcTagsPersistence();
+            services.AddHomeAutomatorApi();
+            services.AddSettingsPersistence();
 
             services.AddControllers();
             services.AddCommonServices();
@@ -76,7 +80,6 @@ namespace HomeAutomator
                 c.RoutePrefix = "swagger";
             });
 
-            //app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();

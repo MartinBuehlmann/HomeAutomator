@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -47,6 +48,25 @@ namespace HomeAutomator.FileStorage
             {
                 string jsonResult = JsonConvert.SerializeObject(data);
                 File.WriteAllText(filePath, jsonResult);
+            }
+        }
+
+        public void Update<T>(string file, Action<T> updateAction)
+            where T : new()
+        {
+            string filePath = Path.Combine(this.directory, $"{file}.json");
+            lock (this.fileLocks.GetOrAdd(file, (_) => new object()))
+            {
+                var data = new T();
+                if (File.Exists(filePath))
+                {
+                    var content = File.ReadAllText(filePath);
+                    data = JsonConvert.DeserializeObject<T>(content)!;
+                }
+
+                updateAction(data);
+
+                File.WriteAllText(filePath, JsonConvert.SerializeObject(data));
             }
         }
     }

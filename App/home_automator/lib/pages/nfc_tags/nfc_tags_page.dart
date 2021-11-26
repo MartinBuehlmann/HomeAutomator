@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_automator/app_state/nfc/nfc_provider.dart';
 import 'package:home_automator/app_state/urls/url_provider.dart';
@@ -16,13 +17,21 @@ class NfcTagsPage extends StatefulWidget {
 }
 
 class _NfcTagsPageState extends State<NfcTagsPage> {
-  final nfcTagNameController = TextEditingController();
-  final nfcTagIdController = TextEditingController();
+  final _nfcTagNameController = TextEditingController();
+  final _nfcTagIdController = TextEditingController();
+  late FocusNode _nfcTagNameFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _nfcTagNameFocusNode = FocusNode();
+  }
 
   @override
   void dispose() {
-    nfcTagIdController.dispose();
-    nfcTagNameController.dispose();
+    _nfcTagIdController.dispose();
+    _nfcTagNameController.dispose();
+    _nfcTagNameFocusNode.dispose();
 
     super.dispose();
   }
@@ -31,8 +40,9 @@ class _NfcTagsPageState extends State<NfcTagsPage> {
   Widget build(BuildContext context) => Consumer2<NfcProvider, UrlProvider>(
         builder: (context, nfcProvider, urlProvider, _) {
           final nfcTag = nfcProvider.retrieve();
-          nfcTagIdController.text = nfcTag.tagId;
-          nfcTagNameController.text = nfcTag.tagName;
+          _nfcTagIdController.text = nfcTag.tagId;
+          _nfcTagNameController.text = nfcTag.tagName;
+          final localizations = AppLocalizations.of(context)!;
 
           return Column(
             children: [
@@ -43,31 +53,39 @@ class _NfcTagsPageState extends State<NfcTagsPage> {
                 height: 32,
               ),
               const SizedBox(height: 20),
-              const Text(
-                'NFC Tag berühren',
-                style: TextStyle(fontSize: 15),
+              Text(
+                localizations.nfcTagsPageLabelReadNfcTag,
+                style: const TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 20),
               TextFieldWidget(
-                title: 'Name',
-                controller: nfcTagNameController,
+                title: localizations.nfcTagsPageLabelName,
+                controller: _nfcTagNameController,
                 isFocussed: true,
+                focusNode: _nfcTagNameFocusNode,
               ),
               TextFieldWidget(
-                title: 'NFC Tag',
-                controller: nfcTagIdController,
+                title: localizations.nfcTagsPageLabelNfcTag,
+                controller: _nfcTagIdController,
                 isEnabled: false,
               ),
               const SizedBox(height: defaultPadding),
               ButtonWidget(
-                text: 'Speichern',
-                isEnabled: nfcTagIdController.text.isNotEmpty &&
-                    nfcTagNameController.text.isNotEmpty,
-                onPressed: () => {
-                  HttpClientWrapper.put(urlProvider.nfcTags, {
-                    'tagId': nfcTagIdController.text,
-                    'tagName': nfcTagNameController.text,
-                  })
+                text: localizations.nfcTagsPageButtonSave,
+                isEnabled: _nfcTagIdController.text.isNotEmpty,
+                onPressed: () async {
+                  if (_nfcTagNameController.text.isEmpty) {
+                    _nfcTagNameFocusNode.requestFocus();
+                    return;
+                  }
+
+                  if (_nfcTagIdController.text.isNotEmpty &&
+                      _nfcTagNameController.text.isNotEmpty) {
+                    await HttpClientWrapper.put(urlProvider.nfcTags, {
+                      'tagId': _nfcTagIdController.text,
+                      'tagName': _nfcTagNameController.text,
+                    });
+                  }
                 },
               )
             ],

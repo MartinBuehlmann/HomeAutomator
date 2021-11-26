@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:home_automator/app_state/auth/auth_provider.dart';
 import 'package:home_automator/app_state/drawer/drawer_provider.dart';
 import 'package:home_automator/routes.dart';
@@ -10,66 +11,70 @@ class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Consumer<AuthProvider>(
-        builder: (context, auth, _) => Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    SizedBox(
-                      child: SvgPicture.asset('assets/images/logo.svg'),
-                      width: 100,
-                      height: 50,
-                    ),
-                    const AppNameWidget(16),
-                  ],
-                ),
+  Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    return Consumer<AuthProvider>(
+      builder: (context, auth, _) => Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  SizedBox(
+                    child: SvgPicture.asset('assets/images/logo.svg'),
+                    width: 100,
+                    height: 50,
+                  ),
+                  const AppNameWidget(16),
+                ],
               ),
-              DrawerListTile(
-                  title: 'Übersicht',
-                  svgSrc: 'assets/icons/menu_dashboard.svg',
-                  press: () {
-                    Provider.of<DrawerProvider>(
-                      context,
-                      listen: false,
-                    ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacementNamed(Routes.dashboard);
-                  }),
-              DrawerListTile(
-                  title: 'NFC Tags',
-                  svgSrc: 'assets/icons/menu_nfc.svg',
-                  press: () {
-                    Provider.of<DrawerProvider>(
-                      context,
-                      listen: false,
-                    ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacementNamed(Routes.nfcTags);
-                  }),
-              DrawerListTile(
-                  title: 'Einstellungen',
-                  svgSrc: 'assets/icons/menu_setting.svg',
-                  press: () {
-                    Provider.of<DrawerProvider>(
-                      context,
-                      listen: false,
-                    ).setCurrentDrawer(0);
-                    Navigator.of(context).pushReplacementNamed(Routes.settings);
-                  }),
-              DrawerListTile(
-                title: 'Abmelden',
-                svgSrc: 'assets/icons/menu_profile.svg',
+            ),
+            DrawerListTile(
+                title: localizations.menuItemOverview,
+                svgSrc: 'assets/icons/menu_dashboard.svg',
                 press: () {
-                  auth.signOut().then((value) => Navigator.of(context).pushReplacementNamed(Routes.home));
-                },
-              ),
-            ],
-          ),
+                  Provider.of<DrawerProvider>(
+                    context,
+                    listen: false,
+                  ).setCurrentDrawer(0);
+                  Navigator.of(context).pushReplacementNamed(Routes.dashboard);
+                }),
+            DrawerListTile(
+                title: localizations.menuItemNfcTags,
+                svgSrc: 'assets/icons/menu_nfc.svg',
+                press: () {
+                  Provider.of<DrawerProvider>(
+                    context,
+                    listen: false,
+                  ).setCurrentDrawer(0);
+                  Navigator.of(context).pushReplacementNamed(Routes.nfcTags);
+                }),
+            DrawerListTile(
+                title: localizations.menuItemSetup,
+                svgSrc: 'assets/icons/menu_setting.svg',
+                press: () {
+                  Provider.of<DrawerProvider>(
+                    context,
+                    listen: false,
+                  ).setCurrentDrawer(0);
+                  Navigator.of(context).pushReplacementNamed(Routes.settings);
+                }),
+            DrawerListTile(
+              title: localizations.menuItemLogout,
+              svgSrc: 'assets/icons/menu_profile.svg',
+              press: () {
+                auth.signOut().then((value) =>
+                    Navigator.of(context).pushReplacementNamed(Routes.home));
+              },
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
 
 class DrawerListTile extends StatelessWidget {

@@ -7,7 +7,7 @@
             On = @on;
             Color = color;
             Brightness = brightness;
-            IsReachable = isReachable;
+            IsReachable = isReachable ?? true;
         }
 
         public bool On { get; }
@@ -16,6 +16,6 @@
         
         public byte Brightness { get; }
 
-        public bool? IsReachable { get; }
+        public bool IsReachable { get; }
     }
 }
