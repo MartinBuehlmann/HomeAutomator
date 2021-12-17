@@ -1,19 +1,22 @@
-﻿using HomeAutomator.Hue.Domain;
+﻿namespace HomeAutomator.Hue.Bridge.Mappings;
+
+using HomeAutomator.Hue.Domain;
 using Q42.HueApi;
 using Q42.HueApi.ColorConverters.Original;
 
-namespace HomeAutomator.Hue.Bridge.Mappings
+internal static class HueLightMapper
 {
-    internal static class HueLightMapper
+    public static HueLight Map(Light light)
     {
-        public static HueLight Map(Light light)
-        {
-            return new HueLight(light.Id, MapHueLightState(light.State), light.Type, light.Name, light.ModelId, light.ProductId);
-        }
-
-        private static HueLightState MapHueLightState(State lightState)
-        {
-            return new HueLightState(lightState.On, lightState.ToHex(), lightState.Brightness, lightState.IsReachable);
-        }
+        return new HueLight(
+            light.Id,
+            light.State.On,
+            light.State.ToHex(),
+            (int)(100.0 * light.State.Brightness / 255.0 + 0.5),
+            light.State.IsReachable,
+            light.Type,
+            light.Name,
+            light.ModelId,
+            light.ProductId);
     }
 }

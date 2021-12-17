@@ -34,6 +34,8 @@ class _SelectableLightWidgetState extends State<SelectableLightWidget> {
           child: Row(
             children: [
               Checkbox(
+                  activeColor:
+                      Theme.of(context).buttonTheme.colorScheme!.primary,
                   value: widget.selectableLight.selected,
                   onChanged: (bool? value) {
                     setState(() {

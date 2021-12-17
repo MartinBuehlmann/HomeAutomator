@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿namespace HomeAutomator.Hue.Bridge;
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HomeAutomator.Hue.Domain;
 
-namespace HomeAutomator.Hue.Bridge
+internal interface IHueClient
 {
-    internal interface IHueClient
-    {
-        Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
+    Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
 
-        Task SetLightAsync(HueLight light);
+    Task SetLightAsync(HueLight light);
 
-        Task<IReadOnlyList<HueGroup>> RetrieveRoomsAsync();
-    }
+    Task<IReadOnlyList<HueGroup>> RetrieveRoomsAsync();
 }

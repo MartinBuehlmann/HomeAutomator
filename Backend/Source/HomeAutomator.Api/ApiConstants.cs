@@ -1,7 +1,6 @@
-﻿namespace HomeAutomator.Api
+﻿namespace HomeAutomator.Api;
+
+internal static class ApiConstants
 {
-    internal static class ApiConstants
-    {
-        public const string Route = "api";
-    }
+    public const string Route = "api";
 }

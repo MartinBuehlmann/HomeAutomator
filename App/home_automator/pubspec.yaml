@@ -46,7 +46,6 @@ dependencies:
   flutter_svg: ^0.23.0+1
   dart_extensions: ^2.2.0
   flutter_circle_color_picker: ^0.3.0
-  input_slider: ^0.3.0
 
 dev_dependencies:
   flutter_test:

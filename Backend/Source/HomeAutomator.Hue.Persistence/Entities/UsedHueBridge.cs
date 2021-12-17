@@ -1,12 +1,11 @@
-﻿namespace HomeAutomator.Hue.Persistence.Entities
-{
-    internal class UsedHueBridge
-    {
-        public UsedHueBridge(string? bridgeId)
-        {
-            BridgeId = bridgeId;
-        }
+﻿namespace HomeAutomator.Hue.Persistence.Entities;
 
-        public string? BridgeId { get; }
+internal class UsedHueBridge
+{
+    public UsedHueBridge(string? bridgeId)
+    {
+        this.BridgeId = bridgeId;
     }
+
+    public string? BridgeId { get; }
 }

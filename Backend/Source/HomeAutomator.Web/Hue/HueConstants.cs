@@ -1,7 +1,6 @@
-﻿namespace HomeAutomator.Web.Hue
+﻿namespace HomeAutomator.Web.Hue;
+
+public static class HueConstants
 {
-    public static class HueConstants
-    {
-        public const string UrlPath = "Hue";
-    }
+    public const string UrlPath = "Hue";
 }

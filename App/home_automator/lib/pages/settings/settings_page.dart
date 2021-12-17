@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:home_automator/app_state/urls/url_provider.dart';
 import 'package:home_automator/pages/settings/assigner_light_settings_retriever.dart';
 import 'package:home_automator/pages/settings/configurable_lights_widget.dart';
@@ -12,6 +13,7 @@ import 'package:home_automator/widgets/combo_box_widget.dart';
 import 'package:home_automator/widgets/label_widget.dart';
 import 'package:provider/provider.dart';
 
+// TODO: check route for tagId and select it
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
         future: _retrieveAppConfiguration(urlProvider, currentItem?.value),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            currentItem ??= snapshot.data!.tagDropdownItems.firstOrNull;
             return Column(
               children: [
                 ComboBoxWidget(
@@ -86,6 +89,8 @@ class _SettingsPageState extends State<SettingsPage> {
         .toList();
 
     List<LightSettings> lightSettings = <LightSettings>[];
+    tagId ??= tagDropdownItems.firstOrNull?.value;
+
     if (tagId != null) {
       final assignedLightSettingsRetriever =
           AssignedLightSettingsRetriever(urlProvider);

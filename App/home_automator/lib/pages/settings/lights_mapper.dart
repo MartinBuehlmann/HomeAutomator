@@ -4,7 +4,7 @@ class LightsMapper {
   static Light map(dynamic value) => Light(
         value['id'],
         value['name'],
-        value['on'],
+        value['isOn'],
         value['color'],
         value['brightness'],
         value['isReachable'],

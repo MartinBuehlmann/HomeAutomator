@@ -1,15 +1,14 @@
-namespace HomeAutomator.Hue.Domain
+namespace HomeAutomator.Hue.Domain;
+
+public class HueBridge
 {
-    public class HueBridge
+    public HueBridge(string bridgeId, string ipAddress)
     {
-        public HueBridge(string bridgeId, string ipAddress)
-        {
-            BridgeId = bridgeId;
-            IpAddress = ipAddress;
-        }
-
-        public string BridgeId { get; }
-
-        public string IpAddress { get; }
+        this.BridgeId = bridgeId;
+        this.IpAddress = ipAddress;
     }
+
+    public string BridgeId { get; }
+
+    public string IpAddress { get; }
 }

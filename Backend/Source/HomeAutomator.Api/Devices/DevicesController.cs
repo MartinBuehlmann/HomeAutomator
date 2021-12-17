@@ -1,37 +1,31 @@
-﻿using System.Threading.Tasks;
+﻿namespace HomeAutomator.Api.Devices;
+
 using HomeAutomation.Devices;
-using HomeAutomation.Devices.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HomeAutomator.Api.Devices
+public class DevicesController : ApiController
 {
-    public class DevicesController : ApiController
+    private readonly IDeviceRepository deviceRepository;
+
+    public DevicesController(IDeviceRepository deviceRepository)
     {
-        private readonly IDeviceRepository deviceRepository;
+        this.deviceRepository = deviceRepository;
+    }
 
-        public DevicesController(IDeviceRepository deviceRepository)
-        {
-            this.deviceRepository = deviceRepository;
-        }
+    [HttpHead("{deviceId}")]
+    public IActionResult RetrieveAsync(string deviceId)
+    {
+        var deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
 
-        [HttpHead("{deviceId}")]
-        public IActionResult RetrieveAsync(string deviceId)
-        {
-            DeviceRegistration? deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
+        if (deviceRegistration != null) return this.Ok();
 
-            if (deviceRegistration != null)
-            {
-                return Ok();
-            }
+        return this.NotFound();
+    }
 
-            return NotFound();
-        }
-
-        [HttpPut]
-        public IActionResult RegisterDevice([FromBody] DeviceRegistrationInfo deviceRegistration)
-        {
-            this.deviceRepository.AddOrUpdateDeviceRegistration(deviceRegistration.DeviceId, deviceRegistration.DeviceName);
-            return Ok();
-        }
+    [HttpPut]
+    public IActionResult RegisterDevice([FromBody] DeviceRegistrationInfo deviceRegistration)
+    {
+        this.deviceRepository.AddOrUpdateDeviceRegistration(deviceRegistration.DeviceId, deviceRegistration.DeviceName);
+        return this.Ok();
     }
 }

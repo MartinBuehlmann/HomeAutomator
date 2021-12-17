@@ -1,15 +1,14 @@
-﻿namespace HomeAutomator.Web.Shared.Configuration
+﻿namespace HomeAutomator.Web.Shared.Configuration;
+
+public class HueBridgeModel
 {
-    public class HueBridgeModel
+    public HueBridgeModel(string id, string displayName)
     {
-        public HueBridgeModel(string id, string displayName)
-        {
-            Id = id;
-            DisplayName = displayName;
-        }
-
-        public string Id { get; }
-
-        public string DisplayName { get; }
+        this.Id = id;
+        this.DisplayName = displayName;
     }
+
+    public string Id { get; }
+
+    public string DisplayName { get; }
 }

@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿namespace HomeAutomator.NfcTags;
+
+using System.Collections.Generic;
 using HomeAutomator.NfcTags.Domain;
 
-namespace HomeAutomator.NfcTags
+public interface INfcTagsRepository
 {
-    public interface INfcTagsRepository
-    {
-        IReadOnlyList<NfcTag> RetrieveAllNfcTags();
-        
-        void AddOrUpdateNfcTag(string tagId, string tagName);
-    }
+    IReadOnlyList<NfcTag> RetrieveAllNfcTags();
+
+    void AddOrUpdateNfcTag(string tagId, string tagName);
 }

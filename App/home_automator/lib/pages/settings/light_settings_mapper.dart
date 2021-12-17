@@ -3,7 +3,7 @@ import 'package:home_automator/pages/settings/light_settings.dart';
 class LightSettingsMapper {
   static LightSettings map(dynamic value) => LightSettings(
         value['id'],
-        value['on'],
+        value['isOn'],
         value['color'],
         value['brightness'],
         value['light']['href'],

@@ -1,50 +1,55 @@
-﻿using System.Collections.Generic;
+﻿namespace HomeAutomator.Api.NfcTags;
+
+using System.Collections.Generic;
 using System.Linq;
 using HomeAutomator.NfcTags;
-using HomeAutomator.NfcTags.Domain;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HomeAutomator.Api.NfcTags
+public class NfcTagsController : ApiController
 {
-    public class NfcTagsController : ApiController
+    private readonly INfcTagsRepository nfcTagsRepository;
+    private readonly UrlBuilder urlBuilder;
+
+    public NfcTagsController(
+        INfcTagsRepository nfcTagsRepository,
+        UrlBuilder urlBuilder)
     {
-        private readonly INfcTagsRepository nfcTagsRepository;
+        this.nfcTagsRepository = nfcTagsRepository;
+        this.urlBuilder = urlBuilder;
+    }
 
-        public NfcTagsController(INfcTagsRepository nfcTagsRepository)
-        {
-            this.nfcTagsRepository = nfcTagsRepository;
-        }
+    [HttpGet]
+    public IActionResult RetrieveAllAsync()
+    {
+        IReadOnlyList<NfcTagInfo> nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
+            .Select(x => new NfcTagInfo(
+                x.TagId,
+                x.TagName,
+                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController), x.TagId))))
+            .ToList();
+        return new JsonResult(nfcTags);
+    }
 
-        [HttpGet]
-        public IActionResult RetrieveAllAsync()
-        {
-            IReadOnlyList<NfcTagInfo> nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
-                .Select(x => new NfcTagInfo(x.TagId, x.TagName))
-                .ToList();
-            return new JsonResult(nfcTags);
-        }
+    [HttpGet("{identifier}")]
+    public IActionResult Retrieve(string identifier)
+    {
+        var nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
+            .Where(x => x.TagId == identifier)
+            .Select(x => new NfcTagInfo(
+                x.TagId,
+                x.TagName,
+                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController), x.TagId))))
+            .SingleOrDefault();
 
-        [HttpGet("{identifier}")]
-        public IActionResult Retrieve(string identifier)
-        {
-            NfcTagInfo? nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
-                .Where(x => x.TagId == identifier)
-                .Select(x => new NfcTagInfo(x.TagId, x.TagName))
-                .SingleOrDefault();
+        if (nfcTags != null) return new JsonResult(nfcTags);
 
-            if (nfcTags != null)
-            {
-                return new JsonResult(nfcTags);
-            }
+        return this.NotFound();
+    }
 
-            return NotFound();
-        }
-
-        [HttpPut]
-        public IActionResult SaveTag([FromBody]NfcTagInfo tag)
-        {
-            this.nfcTagsRepository.AddOrUpdateNfcTag(tag.TagId, tag.TagName);
-            return Ok();
-        }
+    [HttpPut]
+    public IActionResult SaveTag([FromBody] NfcTagInfo tag)
+    {
+        this.nfcTagsRepository.AddOrUpdateNfcTag(tag.TagId, tag.TagName);
+        return this.Ok();
     }
 }

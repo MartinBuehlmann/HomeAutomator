@@ -1,14 +1,13 @@
-﻿using System;
+﻿namespace HomeAutomator.FileStorage;
 
-namespace HomeAutomator.FileStorage
+using System;
+
+public interface IFileStorage
 {
-    public interface IFileStorage
-    {
-        T? Read<T>(string file);
+    T? Read<T>(string file);
 
-        void Write<T>(T? data, string file);
+    void Write<T>(T? data, string file);
 
-        void Update<T>(string file, Action<T> updateAction)
-            where T : new();
-    }
+    void Update<T>(string file, Action<T> updateAction)
+        where T : new();
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_extensions/dart_extensions.dart';
 import 'package:home_automator/widgets/label_widget.dart';
 
 class ComboBoxWidget extends StatefulWidget {
@@ -73,7 +72,7 @@ class _ComboBoxWidgetState extends State<ComboBoxWidget> {
                 child: DropdownButton<DropdownItem>(
                   autofocus: widget.isFocussed,
                   items: dropdownItems,
-                  value: value ?? widget.items.firstOrNull,
+                  value: value,
                   onChanged: (DropdownItem? newValue) => setState(() {
                     value = newValue;
                     widget.onChanged?.call(newValue);

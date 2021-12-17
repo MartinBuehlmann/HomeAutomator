@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿namespace HomeAutomator.Hue.Persistence.Entities;
+
+using System.Collections.Generic;
 using HomeAutomator.Hue.Domain;
 
-namespace HomeAutomator.Hue.Persistence.Entities
+internal class HueAppRegistrations
 {
-    internal class HueAppRegistrations
+    public HueAppRegistrations()
     {
-        public HueAppRegistrations()
-        {
-            this.Items = new List<HueAppRegistration>();
-        }
-
-        public List<HueAppRegistration> Items { get; }
+        this.Items = new List<HueAppRegistration>();
     }
+
+    public List<HueAppRegistration> Items { get; }
 }

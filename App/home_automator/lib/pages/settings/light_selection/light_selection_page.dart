@@ -4,8 +4,8 @@ import 'package:home_automator/app_state/urls/url_provider.dart';
 import 'package:home_automator/pages/settings/assigner_light_settings_retriever.dart';
 import 'package:home_automator/pages/settings/light_selection/selectable_light.dart';
 import 'package:home_automator/pages/settings/light_selection/selectable_light_widget.dart';
-import 'package:home_automator/pages/settings/light_settings.dart';
 import 'package:home_automator/pages/settings/lights_mapper.dart';
+import 'package:home_automator/routes.dart';
 import 'package:home_automator/services/communication/http_client_wrapper.dart';
 import 'package:home_automator/services/device_info/device_info_wrapper.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class _LightSelectionPageState extends State<LightSelectionPage> {
                       snapshot.data!.where((element) => element.selected).map(
                             (e) => {
                               'id': e.light.id,
-                              'on': e.light.on,
+                              'isOn': e.light.on,
                               'color': e.light.color,
                               'brightness': e.light.brightness
                             },
@@ -54,7 +54,10 @@ class _LightSelectionPageState extends State<LightSelectionPage> {
                             '/' +
                             await DeviceInfoWrapper.retrieveDeviceId(),
                         selectedLightSettings);
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacementNamed(
+                      Routes.settings,
+                      arguments: tagId,
+                    );
                   },
                 ),
               ],
