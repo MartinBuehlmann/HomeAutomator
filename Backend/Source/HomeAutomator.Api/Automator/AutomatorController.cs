@@ -22,7 +22,7 @@ public class AutomatorController : ApiController
     }
 
     [HttpPut]
-    public async Task<IActionResult> Automate([FromBody] AutomatorInfo data)
+    public async Task<IActionResult> AutomateAsync([FromBody] AutomatorInfo data)
     {
         IReadOnlyList<LightSettings> lightSettings =
             this.settingsRepository.RetrieveAssignedLightSettings(data.TagId, data.DeviceId);

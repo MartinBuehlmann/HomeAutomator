@@ -39,7 +39,7 @@ public class LightsController : ApiController
     }
 
     [HttpPut("{lightId}")]
-    public async Task<IActionResult> SetLight(string lightId, [FromBody] SetLightInfo light)
+    public async Task<IActionResult> SetLightAsync(string lightId, [FromBody] SetLightInfo light)
     {
         await this.hueBridge.SetLightAsync(
             new HueLight(

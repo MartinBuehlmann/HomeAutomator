@@ -26,7 +26,7 @@ else
                 </select>
             </td>
             <td>
-                <button @onclick="ViewModel.UseSelectedBridge" disabled="@(!ViewModel.CanUseSelectedBridge)">
+                <button @onclick="ViewModel.UseSelectedBridgeAsync" disabled="@(!ViewModel.CanUseSelectedBridge)">
                     <span class="oi oi-check" aria-hidden="true"></span>
                 </button>
             </td>

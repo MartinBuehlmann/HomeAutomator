@@ -24,7 +24,7 @@ public class ConfigurationController : WebController
     }
 
     [HttpGet]
-    public async Task<IActionResult> RetrieveBridges()
+    public async Task<IActionResult> RetrieveBridgesAsync()
     {
         IReadOnlyList<HueBridge> bridges = await this.hueBridge.DiscoverBridgesAsync();
         string? registeredBridgeId = this.hueRepository.RetrieveCurrentBridgeId();
@@ -38,7 +38,7 @@ public class ConfigurationController : WebController
     }
 
     [HttpPost]
-    public async Task<IActionResult> UseBridge([FromBody] ConfigurationSaveModel model)
+    public async Task<IActionResult> UseBridgeAsync([FromBody] ConfigurationSaveModel model)
     {
         HueAppRegistration? hueAppKey = this.hueRepository.RetrieveHueAppKeyByBridgeId(model.BridgeId);
         if (hueAppKey == null)

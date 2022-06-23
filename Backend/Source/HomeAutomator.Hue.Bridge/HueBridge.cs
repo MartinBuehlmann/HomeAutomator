@@ -40,23 +40,23 @@ internal class HueBridge : IHueBridge
 
     public async Task<IReadOnlyList<HueLight>> RetrieveLightsAsync()
     {
-        await this.VerifyHueClientInitialized();
+        await this.VerifyHueClientInitializedAsync();
         return await this.hueClient!.RetrieveLightsAsync();
     }
 
     public async Task SetLightAsync(HueLight light)
     {
-        await this.VerifyHueClientInitialized();
+        await this.VerifyHueClientInitializedAsync();
         await this.hueClient!.SetLightAsync(light);
     }
 
     public async Task<IReadOnlyList<HueGroup>> RetrieveGroupsAsync()
     {
-        await this.VerifyHueClientInitialized();
+        await this.VerifyHueClientInitializedAsync();
         return await this.hueClient!.RetrieveRoomsAsync();
     }
 
-    private async Task VerifyHueClientInitialized()
+    private async Task VerifyHueClientInitializedAsync()
     {
         if (this.hueClient == null)
         {

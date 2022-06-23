@@ -14,7 +14,7 @@ public class DevicesController : ApiController
     }
 
     [HttpHead("{deviceId}")]
-    public IActionResult RetrieveAsync(string deviceId)
+    public IActionResult Retrieve(string deviceId)
     {
         DeviceRegistration? deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
 

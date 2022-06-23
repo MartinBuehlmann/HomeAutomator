@@ -19,7 +19,7 @@ public class NfcTagsController : ApiController
     }
 
     [HttpGet]
-    public IActionResult RetrieveAllAsync()
+    public IActionResult RetrieveAll()
     {
         IReadOnlyList<NfcTagInfo> nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
             .Select(x => new NfcTagInfo(

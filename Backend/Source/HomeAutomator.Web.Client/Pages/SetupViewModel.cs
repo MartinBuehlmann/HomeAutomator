@@ -41,7 +41,7 @@ internal class SetupViewModel
         }
     }
 
-    public async Task UseSelectedBridge()
+    public async Task UseSelectedBridgeAsync()
     {
         await this.http.PostAsJsonAsync("Web/Hue/Configuration", new ConfigurationSaveModel(this.SelectedBridgeId));
     }
