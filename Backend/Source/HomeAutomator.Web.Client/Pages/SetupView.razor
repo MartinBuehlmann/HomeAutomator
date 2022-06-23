@@ -1,11 +1,11 @@
 ﻿@page "/setup"
 @using HomeAutomator.Web.Shared.Configuration
 
-@inject SetupViewModel viewModel
+@inject SetupViewModel ViewModel
 
 <h1>Setup</h1>
 
-@if (!viewModel.DiscoveredHueBridges.Any())
+@if (!ViewModel.DiscoveredHueBridges.Any())
 {
     <p>
         <em>Loading...</em>
@@ -18,15 +18,15 @@ else
         <tr>
             <td>Philips Hue Bridge</td>
             <td>
-                <select @bind="viewModel.SelectedBridgeId">
-                    @foreach (HueBridgeModel bridge in viewModel.DiscoveredHueBridges)
+                <select @bind="ViewModel.SelectedBridgeId">
+                    @foreach (HueBridgeModel bridge in ViewModel.DiscoveredHueBridges)
                     {
                         <option value="@bridge.Id">@bridge.DisplayName</option>
                     }
                 </select>
             </td>
             <td>
-                <button @onclick="viewModel.UseSelectedBridge" disabled="@(!viewModel.CanUseSelectedBridge)">
+                <button @onclick="ViewModel.UseSelectedBridge" disabled="@(!ViewModel.CanUseSelectedBridge)">
                     <span class="oi oi-check" aria-hidden="true"></span>
                 </button>
             </td>

@@ -1,9 +1,11 @@
 ﻿namespace HomeAutomator.Web.Hue.Configuration;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HomeAutomator.Hue;
+using HomeAutomator.Hue.Domain;
 using HomeAutomator.Web.Shared.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,8 +26,8 @@ public class ConfigurationController : WebController
     [HttpGet]
     public async Task<IActionResult> RetrieveBridges()
     {
-        var bridges = await this.hueBridge.DiscoverBridgesAsync();
-        var registeredBridgeId = this.hueRepository.RetrieveCurrentBridgeId();
+        IReadOnlyList<HueBridge> bridges = await this.hueBridge.DiscoverBridgesAsync();
+        string? registeredBridgeId = this.hueRepository.RetrieveCurrentBridgeId();
         return new JsonResult(new ConfigurationEditModel(
             registeredBridgeId ?? string.Empty,
             new[] { new HueBridgeModel(string.Empty, "--- None ---") }
@@ -38,10 +40,10 @@ public class ConfigurationController : WebController
     [HttpPost]
     public async Task<IActionResult> UseBridge([FromBody] ConfigurationSaveModel model)
     {
-        var hueAppKey = this.hueRepository.RetrieveHueAppKeyByBridgeId(model.BridgeId);
+        HueAppRegistration? hueAppKey = this.hueRepository.RetrieveHueAppKeyByBridgeId(model.BridgeId);
         if (hueAppKey == null)
         {
-            var bridge = (await this.hueBridge.DiscoverBridgesAsync()).Single(x => x.BridgeId == model.BridgeId);
+            HueBridge bridge = (await this.hueBridge.DiscoverBridgesAsync()).Single(x => x.BridgeId == model.BridgeId);
             hueAppKey = await this.hueBridge.RegisterAppAsync(bridge, "HomeAutomator", Environment.MachineName);
 
             if (hueAppKey != null) this.hueRepository.AddOrUpdateHueAppRegistration(hueAppKey);

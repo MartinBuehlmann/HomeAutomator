@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -7,7 +6,7 @@ class TextFieldWidget extends StatelessWidget {
     this.isPassword = false,
     this.isFocussed = false,
     this.isEnabled = true,
-    this.focusNode = null,
+    this.focusNode,
     required this.title,
     required this.controller,
   }) : super(key: key);

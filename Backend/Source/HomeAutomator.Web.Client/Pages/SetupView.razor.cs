@@ -6,6 +6,6 @@ public partial class SetupView
 {
     protected override async Task OnInitializedAsync()
     {
-        await this.viewModel.OnInitializedAsync();
+        await this.ViewModel.OnInitializedAsync();
     }
 }

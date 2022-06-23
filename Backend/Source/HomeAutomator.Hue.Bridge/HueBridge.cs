@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HomeAutomator.Hue.Domain;
 using Q42.HueApi;
 using Q42.HueApi.Interfaces;
+using Q42.HueApi.Models.Bridge;
 
 internal class HueBridge : IHueBridge
 {
@@ -23,7 +24,7 @@ internal class HueBridge : IHueBridge
     public async Task<IReadOnlyList<Domain.HueBridge>> DiscoverBridgesAsync()
     {
         IBridgeLocator locator = new HttpBridgeLocator();
-        var bridges = await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5));
+        IEnumerable<LocatedBridge> bridges = await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5));
         return bridges.Select(x => new Domain.HueBridge(x.BridgeId, x.IpAddress)).ToList();
     }
 
@@ -33,7 +34,7 @@ internal class HueBridge : IHueBridge
         string deviceName)
     {
         ILocalHueClient client = new LocalHueClient(bridge.IpAddress);
-        var appKey = await client.RegisterAsync(appName, deviceName);
+        string? appKey = await client.RegisterAsync(appName, deviceName);
         return string.IsNullOrEmpty(appKey) ? null : new HueAppRegistration(bridge.BridgeId, appKey);
     }
 
@@ -59,15 +60,15 @@ internal class HueBridge : IHueBridge
     {
         if (this.hueClient == null)
         {
-            var bridgeId = this.hueRepository.RetrieveCurrentBridgeId();
+            string? bridgeId = this.hueRepository.RetrieveCurrentBridgeId();
             if (string.IsNullOrEmpty(bridgeId))
                 throw new InvalidOperationException("A hue bridge must first be registered!");
 
-            var appRegistration = this.hueRepository.RetrieveHueAppKeyByBridgeId(bridgeId);
+            HueAppRegistration? appRegistration = this.hueRepository.RetrieveHueAppKeyByBridgeId(bridgeId);
             if (appRegistration == null) throw new InvalidOperationException("App is not registered!");
 
-            var bridges = await this.DiscoverBridgesAsync();
-            var bridge = bridges.SingleOrDefault(x => x.BridgeId == bridgeId);
+            IReadOnlyList<Domain.HueBridge> bridges = await this.DiscoverBridgesAsync();
+            Domain.HueBridge? bridge = bridges.SingleOrDefault(x => x.BridgeId == bridgeId);
             if (bridge == null) throw new InvalidOperationException("Configured bridge is not available.");
 
             this.hueClient = this.hueClientFactory.Create(bridge, appRegistration);

@@ -1,5 +1,5 @@
 name: home_automator
-description: A new Flutter project.
+description: Control HUE over NFC tags with your mobile phone.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

@@ -1,6 +1,6 @@
+import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:dart_extensions/dart_extensions.dart';
 import 'package:home_automator/app_state/urls/url_provider.dart';
 import 'package:home_automator/pages/settings/assigner_light_settings_retriever.dart';
 import 'package:home_automator/pages/settings/configurable_lights_widget.dart';

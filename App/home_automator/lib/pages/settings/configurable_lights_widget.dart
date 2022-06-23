@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_automator/pages/settings/light.dart';
 import 'package:home_automator/pages/settings/light_settings/light_settings_page.dart';
-import 'package:home_automator/utilities/hex_color.dart';
 import 'package:home_automator/routes.dart';
+import 'package:home_automator/utilities/hex_color.dart';
 
 class ConfigurableLightWidget extends StatelessWidget {
   const ConfigurableLightWidget(this.tagId, this.light, {Key? key})

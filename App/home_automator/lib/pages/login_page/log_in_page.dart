@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_automator/app_state/auth/auth_provider.dart';
 import 'package:home_automator/widgets/app_name_widget.dart';
