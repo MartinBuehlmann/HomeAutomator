@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  homeautomator:
+    image: ${DOCKER_REGISTRY-}homeautomator
+    build:
+      context: .
+      dockerfile: HomeAutomator/Dockerfile

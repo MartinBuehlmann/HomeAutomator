@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator", "HomeAutomator\HomeAutomator.csproj", "{8BAC6C03-1B73-4B7D-9B9B-E50CE325856D}"
 EndProject
@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Web", "HomeAu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Web.Client", "HomeAutomator.Web.Client\HomeAutomator.Web.Client.csproj", "{08BF9A9D-B1DD-4B6F-8557-68332731D3AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Web.Shared", "HomeAutomator.Web.Shared\HomeAutomator.Web.Shared.csproj", "{399B83FD-D45F-4304-AB1B-AD12655BED7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Web.Shared", "HomeAutomator.Web.Shared\HomeAutomator.Web.Shared.csproj", "{399B83FD-D45F-4304-AB1B-AD12655BED7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D47AAC24-73EC-4142-841F-77BDB55E7B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.FileStorage", "HomeAutomator.FileStorage\HomeAutomator.FileStorage.csproj", "{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.FileStorage", "HomeAutomator.FileStorage\HomeAutomator.FileStorage.csproj", "{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{821336D2-1730-4EF2-A8D6-51FCDDF902DC}"
 EndProject
@@ -37,21 +37,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{5E095C57-6C5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devices", "Devices", "{EE520E60-413B-4CFF-86AB-6A632776135F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Devices", "HomeAutomator.Devices\HomeAutomator.Devices.csproj", "{ECAEAADE-5585-415A-A9A7-751AA2153B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Devices", "HomeAutomator.Devices\HomeAutomator.Devices.csproj", "{ECAEAADE-5585-415A-A9A7-751AA2153B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Devices.Persistence", "HomeAutomator.Devices.Persistence\HomeAutomator.Devices.Persistence.csproj", "{D0DB2469-C7AB-4BB6-A329-98618B76A2AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Devices.Persistence", "HomeAutomator.Devices.Persistence\HomeAutomator.Devices.Persistence.csproj", "{D0DB2469-C7AB-4BB6-A329-98618B76A2AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NfcTags", "NfcTags", "{10313177-F91E-443E-8CBE-5E9AD5A6195E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.NfcTags", "HomeAutomator.NfcTags\HomeAutomator.NfcTags.csproj", "{FAC1BCCA-D4E8-44F8-91CD-8232470AA825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.NfcTags", "HomeAutomator.NfcTags\HomeAutomator.NfcTags.csproj", "{FAC1BCCA-D4E8-44F8-91CD-8232470AA825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.NfcTags.Persistence", "HomeAutomator.NfcTags.Persistence\HomeAutomator.NfcTags.Persistence.csproj", "{2A31A95A-CB5E-4993-8DC7-2E07654B6BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.NfcTags.Persistence", "HomeAutomator.NfcTags.Persistence\HomeAutomator.NfcTags.Persistence.csproj", "{2A31A95A-CB5E-4993-8DC7-2E07654B6BC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{04F8AFC8-8EE8-4530-987C-E569FD326A54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Settings", "HomeAutomator.Settings\HomeAutomator.Settings.csproj", "{54105839-B210-4CF4-ADE4-02466F5263B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Settings", "HomeAutomator.Settings\HomeAutomator.Settings.csproj", "{54105839-B210-4CF4-ADE4-02466F5263B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomator.Settings.Persistence", "HomeAutomator.Settings.Persistence\HomeAutomator.Settings.Persistence.csproj", "{14374582-DB7B-43C3-BB0F-A991BD187590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomator.Settings.Persistence", "HomeAutomator.Settings.Persistence\HomeAutomator.Settings.Persistence.csproj", "{14374582-DB7B-43C3-BB0F-A991BD187590}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AC649518-CDA1-4064-832E-475560ACECB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{14374582-DB7B-43C3-BB0F-A991BD187590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14374582-DB7B-43C3-BB0F-A991BD187590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14374582-DB7B-43C3-BB0F-A991BD187590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC649518-CDA1-4064-832E-475560ACECB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC649518-CDA1-4064-832E-475560ACECB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC649518-CDA1-4064-832E-475560ACECB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC649518-CDA1-4064-832E-475560ACECB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,14 +134,14 @@ Global
 		{3193819B-1B68-4BFF-B171-6CFC6CFD8A70} = {62A5601E-0864-4684-8E9A-BE921639CF70}
 		{C7AB0917-6981-4B77-BAFA-C8D5404D8034} = {62A5601E-0864-4684-8E9A-BE921639CF70}
 		{0D906C20-A817-4E75-BF11-9559DDBFB7D2} = {62A5601E-0864-4684-8E9A-BE921639CF70}
-		{62A5601E-0864-4684-8E9A-BE921639CF70} = {E0A4EBDD-EB8A-4C2C-AE9F-4AC34455D652}
-		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB} = {D47AAC24-73EC-4142-841F-77BDB55E7B81}
-		{821336D2-1730-4EF2-A8D6-51FCDDF902DC} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
-		{5E095C57-6C50-4A8D-BB4B-92D67281A781} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
 		{76A4235D-BA39-445E-9CE9-586DA5BE447B} = {5E095C57-6C50-4A8D-BB4B-92D67281A781}
+		{62A5601E-0864-4684-8E9A-BE921639CF70} = {E0A4EBDD-EB8A-4C2C-AE9F-4AC34455D652}
 		{4F831DDA-339C-4EEF-BD0B-5FA6FE2ABD51} = {821336D2-1730-4EF2-A8D6-51FCDDF902DC}
 		{08BF9A9D-B1DD-4B6F-8557-68332731D3AA} = {821336D2-1730-4EF2-A8D6-51FCDDF902DC}
 		{399B83FD-D45F-4304-AB1B-AD12655BED7B} = {821336D2-1730-4EF2-A8D6-51FCDDF902DC}
+		{DD024B99-22CB-44E2-BCAE-1CC8ABDD8CDB} = {D47AAC24-73EC-4142-841F-77BDB55E7B81}
+		{821336D2-1730-4EF2-A8D6-51FCDDF902DC} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
+		{5E095C57-6C50-4A8D-BB4B-92D67281A781} = {809157A3-A2F5-430B-BBE9-FC062FF6C915}
 		{EE520E60-413B-4CFF-86AB-6A632776135F} = {E0A4EBDD-EB8A-4C2C-AE9F-4AC34455D652}
 		{ECAEAADE-5585-415A-A9A7-751AA2153B23} = {EE520E60-413B-4CFF-86AB-6A632776135F}
 		{D0DB2469-C7AB-4BB6-A329-98618B76A2AF} = {EE520E60-413B-4CFF-86AB-6A632776135F}
