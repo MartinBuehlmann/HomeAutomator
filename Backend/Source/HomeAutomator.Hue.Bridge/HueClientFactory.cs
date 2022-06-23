@@ -26,7 +26,7 @@ internal class HueClientFactory
 
         public async Task<IReadOnlyList<HueLight>> RetrieveLightsAsync()
         {
-            var nativeLights = await this.client!.GetLightsAsync();
+            IEnumerable<Light> nativeLights = await this.client!.GetLightsAsync();
             return nativeLights.Select(HueLightMapper.Map).ToList();
         }
 
@@ -41,8 +41,8 @@ internal class HueClientFactory
 
         public async Task<IReadOnlyList<HueGroup>> RetrieveRoomsAsync()
         {
-            var groups = await this.client!.GetGroupsAsync();
-            var lights = await this.RetrieveLightsAsync();
+            IReadOnlyCollection<Group> groups = await this.client!.GetGroupsAsync();
+            IReadOnlyList<HueLight> lights = await this.RetrieveLightsAsync();
             return groups
                 .Where(x => x.Type == GroupType.Room)
                 .Select(group => new HueGroup(

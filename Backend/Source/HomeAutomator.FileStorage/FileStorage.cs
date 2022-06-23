@@ -20,22 +20,22 @@ internal class FileStorage : IFileStorage
 
     public T? Read<T>(string file)
     {
-        var filePath = Path.Combine(this.directory, $"{file}.json");
+        string filePath = Path.Combine(this.directory, $"{file}.json");
         lock (this.fileLocks.GetOrAdd(file, _ => new object()))
         {
             if (!File.Exists(filePath)) return default;
 
-            var jsonResult = File.ReadAllText(filePath);
+            string jsonResult = File.ReadAllText(filePath);
             return JsonConvert.DeserializeObject<T>(jsonResult);
         }
     }
 
     public void Write<T>(T? data, string file)
     {
-        var filePath = Path.Combine(this.directory, $"{file}.json");
+        string filePath = Path.Combine(this.directory, $"{file}.json");
         lock (this.fileLocks.GetOrAdd(file, _ => new object()))
         {
-            var jsonResult = JsonConvert.SerializeObject(data);
+            string jsonResult = JsonConvert.SerializeObject(data);
             File.WriteAllText(filePath, jsonResult);
         }
     }
@@ -43,13 +43,13 @@ internal class FileStorage : IFileStorage
     public void Update<T>(string file, Action<T> updateAction)
         where T : new()
     {
-        var filePath = Path.Combine(this.directory, $"{file}.json");
+        string filePath = Path.Combine(this.directory, $"{file}.json");
         lock (this.fileLocks.GetOrAdd(file, _ => new object()))
         {
             var data = new T();
             if (File.Exists(filePath))
             {
-                var content = File.ReadAllText(filePath);
+                string content = File.ReadAllText(filePath);
                 data = JsonConvert.DeserializeObject<T>(content)!;
             }
 

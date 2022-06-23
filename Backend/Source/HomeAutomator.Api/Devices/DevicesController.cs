@@ -1,6 +1,7 @@
 ﻿namespace HomeAutomator.Api.Devices;
 
 using HomeAutomation.Devices;
+using HomeAutomation.Devices.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 public class DevicesController : ApiController
@@ -15,7 +16,7 @@ public class DevicesController : ApiController
     [HttpHead("{deviceId}")]
     public IActionResult RetrieveAsync(string deviceId)
     {
-        var deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
+        DeviceRegistration? deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
 
         if (deviceRegistration != null) return this.Ok();
 

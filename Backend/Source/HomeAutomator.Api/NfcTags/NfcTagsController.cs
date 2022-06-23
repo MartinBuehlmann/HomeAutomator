@@ -33,7 +33,7 @@ public class NfcTagsController : ApiController
     [HttpGet("{identifier}")]
     public IActionResult Retrieve(string identifier)
     {
-        var nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
+        NfcTagInfo? nfcTags = this.nfcTagsRepository.RetrieveAllNfcTags()
             .Where(x => x.TagId == identifier)
             .Select(x => new NfcTagInfo(
                 x.TagId,

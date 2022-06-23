@@ -27,7 +27,7 @@ public class AutomatorController : ApiController
         IReadOnlyList<LightSettings> lightSettings =
             this.settingsRepository.RetrieveAssignedLightSettings(data.TagId, data.DeviceId);
 
-        foreach (var lightSetting in lightSettings)
+        foreach (LightSettings lightSetting in lightSettings)
             await this.hueBridge.SetLightAsync(
                 new HueLight(
                     lightSetting.Id,

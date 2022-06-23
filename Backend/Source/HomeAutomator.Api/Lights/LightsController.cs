@@ -30,8 +30,8 @@ public class LightsController : ApiController
     [HttpGet("{lightId}")]
     public async Task<IActionResult> RetrieveLightAsync(string lightId)
     {
-        var lights = await this.RetrieveAllLightsAsync();
-        var light = lights.SingleOrDefault(x => x.Id == lightId);
+        IReadOnlyList<LightInfo> lights = await this.RetrieveAllLightsAsync();
+        LightInfo? light = lights.SingleOrDefault(x => x.Id == lightId);
 
         if (light != null) return new JsonResult(light);
 
@@ -52,8 +52,8 @@ public class LightsController : ApiController
 
     private async Task<IReadOnlyList<LightInfo>> RetrieveAllLightsAsync()
     {
-        var hueLights = await this.hueBridge.RetrieveLightsAsync();
-        var hueGroups = await this.hueBridge.RetrieveGroupsAsync();
+        IReadOnlyList<HueLight> hueLights = await this.hueBridge.RetrieveLightsAsync();
+        IReadOnlyList<HueGroup> hueGroups = await this.hueBridge.RetrieveGroupsAsync();
 
         return hueLights.Select(x =>
                 new LightInfo(

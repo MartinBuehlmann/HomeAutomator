@@ -44,7 +44,7 @@ internal class SettingsRepository : ISettingsRepository
         this.fileStorage.Update<LightAssignments>(LightAssignmentsName,
             lightAssignments =>
             {
-                var lights = lightAssignments.Items
+                List<LightSettings> lights = lightAssignments.Items
                     .Single(x => x.TagId == tagId && x.DeviceId == deviceId)
                     .Lights
                     .ToList();
