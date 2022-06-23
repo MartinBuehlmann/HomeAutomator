@@ -12,7 +12,7 @@ internal static class HueLightMapper
             light.Id,
             light.State.On,
             light.State.ToHex(),
-            (int)(100.0 * light.State.Brightness / 255.0 + 0.5),
+            (int)((100.0 * light.State.Brightness / 255.0) + 0.5),
             light.State.IsReachable,
             light.Type,
             light.Name,

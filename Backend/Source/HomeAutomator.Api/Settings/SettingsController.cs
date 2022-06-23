@@ -23,9 +23,9 @@ public class SettingsController : ApiController
     /// <summary>
     ///     Returns a list of URLs to the lights associated with the combination of NFC tag and device.
     /// </summary>
-    /// <param name="tagId">Id of the NFC tag</param>
-    /// <param name="deviceId">Id of the device which scanned the NFC tag</param>
-    /// <returns>List of light settings assigned to the tag and device</returns>
+    /// <param name="tagId">Id of the NFC tag.</param>
+    /// <param name="deviceId">Id of the device which scanned the NFC tag.</param>
+    /// <returns>List of light settings assigned to the tag and device.</returns>
     [HttpGet("{tagId}/{deviceId}")]
     public IActionResult RetrieveLightsByTagIdAndDeviceId(string tagId, string deviceId)
     {
@@ -42,10 +42,10 @@ public class SettingsController : ApiController
     /// <summary>
     ///     Assigns a list of lights to the combination of NFC tag and device and persists this.
     /// </summary>
-    /// <param name="tagId">Id of the NFC tag</param>
-    /// <param name="deviceId">Id of the device which scanned the NFC tag</param>
-    /// <param name="lightSettingInfos">List of light settings to save</param>
-    /// <returns></returns>
+    /// <param name="tagId">Id of the NFC tag.</param>
+    /// <param name="deviceId">Id of the device which scanned the NFC tag.</param>
+    /// <param name="lightSettingInfos">List of light settings to save.</param>
+    /// <returns>Status OK when lights are updated or added.</returns>
     [HttpPut("{tagId}/{deviceId}")]
     public IActionResult AddOrUpdateLightsByTagIdAndDeviceId(
         string tagId,
@@ -66,7 +66,8 @@ public class SettingsController : ApiController
         string deviceId,
         [FromBody] LightSettingsInfo lightSettingInfos)
     {
-        var lightSettings = new LightSettings(lightSettingInfos.Id,
+        var lightSettings = new LightSettings(
+            lightSettingInfos.Id,
             lightSettingInfos.IsOn,
             lightSettingInfos.Color,
             lightSettingInfos.Brightness);

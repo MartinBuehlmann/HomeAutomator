@@ -18,7 +18,10 @@ public class DevicesController : ApiController
     {
         DeviceRegistration? deviceRegistration = this.deviceRepository.RetrieveDeviceRegistrationByDeviceId(deviceId);
 
-        if (deviceRegistration != null) return this.Ok();
+        if (deviceRegistration != null)
+        {
+            return this.Ok();
+        }
 
         return this.NotFound();
     }

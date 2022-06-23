@@ -33,7 +33,9 @@ public class UrlBuilder
         if (!string.IsNullOrEmpty(controller))
         {
             if (controller.EndsWith(ControllerAppendix, StringComparison.OrdinalIgnoreCase))
+            {
                 controller = controller.Substring(0, controller.Length - ControllerAppendix.Length);
+            }
 
             url.Append('/');
             url.Append(controller);
@@ -45,7 +47,10 @@ public class UrlBuilder
             url.Append(resourceIdentifier);
         }
 
-        if (url.Length == 0) url.Append('/');
+        if (url.Length == 0)
+        {
+            url.Append('/');
+        }
 
         return url.ToString();
     }

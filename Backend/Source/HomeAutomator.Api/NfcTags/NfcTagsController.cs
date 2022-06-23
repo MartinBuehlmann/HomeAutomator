@@ -41,7 +41,10 @@ public class NfcTagsController : ApiController
                 new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController), x.TagId))))
             .SingleOrDefault();
 
-        if (nfcTags != null) return new JsonResult(nfcTags);
+        if (nfcTags != null)
+        {
+            return new JsonResult(nfcTags);
+        }
 
         return this.NotFound();
     }

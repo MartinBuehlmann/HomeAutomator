@@ -31,7 +31,8 @@ internal class SettingsRepository : ISettingsRepository
         string deviceId,
         IReadOnlyList<LightSettings> lightSettings)
     {
-        this.fileStorage.Update<LightAssignments>(LightAssignmentsName,
+        this.fileStorage.Update<LightAssignments>(
+            LightAssignmentsName,
             lightAssignments =>
             {
                 lightAssignments.Items.RemoveAll(x => x.TagId == tagId && x.DeviceId == deviceId);
@@ -41,7 +42,8 @@ internal class SettingsRepository : ISettingsRepository
 
     public void UpdateAssignedLightSettings(string tagId, string deviceId, LightSettings lightSettings)
     {
-        this.fileStorage.Update<LightAssignments>(LightAssignmentsName,
+        this.fileStorage.Update<LightAssignments>(
+            LightAssignmentsName,
             lightAssignments =>
             {
                 List<LightSettings> lights = lightAssignments.Items

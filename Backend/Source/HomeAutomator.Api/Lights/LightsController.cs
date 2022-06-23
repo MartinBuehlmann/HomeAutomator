@@ -33,7 +33,10 @@ public class LightsController : ApiController
         IReadOnlyList<LightInfo> lights = await this.RetrieveAllLightsAsync();
         LightInfo? light = lights.SingleOrDefault(x => x.Id == lightId);
 
-        if (light != null) return new JsonResult(light);
+        if (light != null)
+        {
+            return new JsonResult(light);
+        }
 
         return this.NotFound();
     }

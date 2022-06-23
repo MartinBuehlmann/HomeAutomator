@@ -62,14 +62,22 @@ internal class HueBridge : IHueBridge
         {
             string? bridgeId = this.hueRepository.RetrieveCurrentBridgeId();
             if (string.IsNullOrEmpty(bridgeId))
+            {
                 throw new InvalidOperationException("A hue bridge must first be registered!");
+            }
 
             HueAppRegistration? appRegistration = this.hueRepository.RetrieveHueAppKeyByBridgeId(bridgeId);
-            if (appRegistration == null) throw new InvalidOperationException("App is not registered!");
+            if (appRegistration == null)
+            {
+                throw new InvalidOperationException("App is not registered!");
+            }
 
             IReadOnlyList<Domain.HueBridge> bridges = await this.DiscoverBridgesAsync();
             Domain.HueBridge? bridge = bridges.SingleOrDefault(x => x.BridgeId == bridgeId);
-            if (bridge == null) throw new InvalidOperationException("Configured bridge is not available.");
+            if (bridge == null)
+            {
+                throw new InvalidOperationException("Configured bridge is not available.");
+            }
 
             this.hueClient = this.hueClientFactory.Create(bridge, appRegistration);
         }

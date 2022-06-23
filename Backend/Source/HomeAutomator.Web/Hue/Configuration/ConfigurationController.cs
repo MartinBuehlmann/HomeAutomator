@@ -46,7 +46,10 @@ public class ConfigurationController : WebController
             HueBridge bridge = (await this.hueBridge.DiscoverBridgesAsync()).Single(x => x.BridgeId == model.BridgeId);
             hueAppKey = await this.hueBridge.RegisterAppAsync(bridge, "HomeAutomator", Environment.MachineName);
 
-            if (hueAppKey != null) this.hueRepository.AddOrUpdateHueAppRegistration(hueAppKey);
+            if (hueAppKey != null)
+            {
+                this.hueRepository.AddOrUpdateHueAppRegistration(hueAppKey);
+            }
         }
 
         if (hueAppKey != null)

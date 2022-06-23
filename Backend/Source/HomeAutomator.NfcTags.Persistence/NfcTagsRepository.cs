@@ -25,7 +25,8 @@ internal class NfcTagsRepository : INfcTagsRepository
 
     public void AddOrUpdateNfcTag(string tagId, string tagName)
     {
-        this.fileStorage.Update<NfcTags>(NfcTagsName,
+        this.fileStorage.Update<NfcTags>(
+            NfcTagsName,
             nfcTags =>
             {
                 nfcTags.Items.RemoveAll(x => x.TagId == tagId);

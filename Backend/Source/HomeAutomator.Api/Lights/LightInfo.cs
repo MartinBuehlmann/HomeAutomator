@@ -29,12 +29,12 @@ public class LightInfo
     public bool IsOn { get; }
 
     /// <summary>
-    ///     Color in RGB using hex values (i.e. A0EBFF)
+    ///     Gets the Color in RGB using hex values (i.e. A0EBFF).
     /// </summary>
     public string Color { get; }
 
     /// <summary>
-    ///     Brightness in percents (0: dark, 100: bright)
+    ///     Gets the Brightness in percents (0: dark, 100: bright).
     /// </summary>
     public int Brightness { get; }
 

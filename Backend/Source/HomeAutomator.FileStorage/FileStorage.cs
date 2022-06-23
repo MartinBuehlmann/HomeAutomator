@@ -23,7 +23,10 @@ internal class FileStorage : IFileStorage
         string filePath = Path.Combine(this.directory, $"{file}.json");
         lock (this.fileLocks.GetOrAdd(file, _ => new object()))
         {
-            if (!File.Exists(filePath)) return default;
+            if (!File.Exists(filePath))
+            {
+                return default;
+            }
 
             string jsonResult = File.ReadAllText(filePath);
             return JsonConvert.DeserializeObject<T>(jsonResult);
@@ -61,6 +64,9 @@ internal class FileStorage : IFileStorage
 
     private void EnsureDataDirectoryExists()
     {
-        if (!Directory.Exists(this.directory)) Directory.CreateDirectory(this.directory);
+        if (!Directory.Exists(this.directory))
+        {
+            Directory.CreateDirectory(this.directory);
+        }
     }
 }

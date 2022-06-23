@@ -28,12 +28,15 @@ public class AutomatorController : ApiController
             this.settingsRepository.RetrieveAssignedLightSettings(data.TagId, data.DeviceId);
 
         foreach (LightSettings lightSetting in lightSettings)
+        {
             await this.hueBridge.SetLightAsync(
                 new HueLight(
                     lightSetting.Id,
                     lightSetting.On,
                     lightSetting.Color,
                     lightSetting.Brightness));
+        }
+
         return new OkResult();
     }
 }

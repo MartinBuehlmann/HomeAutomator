@@ -26,7 +26,8 @@ internal class DeviceRepository : IDeviceRepository
 
     public void AddOrUpdateDeviceRegistration(string deviceId, string deviceName)
     {
-        this.fileStorage.Update<DeviceRegistrations>(DeviceRegistrationsName,
+        this.fileStorage.Update<DeviceRegistrations>(
+            DeviceRegistrationsName,
             deviceRegistrations =>
             {
                 deviceRegistrations.Items.RemoveAll(x => x.DeviceId == deviceId);
