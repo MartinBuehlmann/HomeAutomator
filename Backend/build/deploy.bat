@@ -3,7 +3,7 @@ set password=raspberry
 cd ..
 cd source
 rd ..\artifacts /s /q
-dotnet publish -c Release -r linux-arm --self-contained -o ../artifacts/publish
+dotnet publish HomeAutomator -c Release -r linux-arm --self-contained -o ../artifacts/publish
 plink -ssh pi@%address% -pw %password% -no-antispoof "sudo systemctl stop HomeAutomator"
 plink -ssh pi@%address% -pw %password% -no-antispoof "mkdir /home/pi/HomeAutomator"
 plink -ssh pi@%address% -pw %password% -no-antispoof "mkdir /home/pi/HomeAutomator/bin"
