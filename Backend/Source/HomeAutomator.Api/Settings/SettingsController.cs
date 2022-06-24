@@ -60,6 +60,7 @@
             return this.Ok();
         }
 
+        // TODO: Parameter lightId is not used, maybe a refactoring on the app is also required.
         [HttpPut("{tagId}/{deviceId}/{lightId}")]
         public IActionResult UpdateSingleLightSettings(
             string tagId,
