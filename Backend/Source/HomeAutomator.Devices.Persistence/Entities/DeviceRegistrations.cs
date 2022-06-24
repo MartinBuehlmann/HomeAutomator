@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Devices.Persistence.Entities;
-
-using System.Collections.Generic;
-using HomeAutomation.Devices.Domain;
-
-internal class DeviceRegistrations
+﻿namespace HomeAutomator.Devices.Persistence.Entities
 {
-    public DeviceRegistrations()
-    {
-        this.Items = new List<DeviceRegistration>();
-    }
+    using System.Collections.Generic;
+    using HomeAutomation.Devices.Domain;
 
-    public List<DeviceRegistration> Items { get; }
+    internal class DeviceRegistrations
+    {
+        public DeviceRegistrations()
+        {
+            this.Items = new List<DeviceRegistration>();
+        }
+
+        public List<DeviceRegistration> Items { get; }
+    }
 }

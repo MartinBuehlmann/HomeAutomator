@@ -1,22 +1,23 @@
-﻿namespace HomeAutomator.Settings.Domain;
-
-using System.Collections.Generic;
-
-public class LightAssignment
+﻿namespace HomeAutomator.Settings.Domain
 {
-    public LightAssignment(
-        string tagId,
-        string deviceId,
-        IReadOnlyList<LightSettings> lights)
+    using System.Collections.Generic;
+
+    public class LightAssignment
     {
-        this.TagId = tagId;
-        this.DeviceId = deviceId;
-        this.Lights = lights;
+        public LightAssignment(
+            string tagId,
+            string deviceId,
+            IReadOnlyList<LightSettings> lights)
+        {
+            this.TagId = tagId;
+            this.DeviceId = deviceId;
+            this.Lights = lights;
+        }
+
+        public string TagId { get; }
+
+        public string DeviceId { get; }
+
+        public IReadOnlyList<LightSettings> Lights { get; }
     }
-
-    public string TagId { get; }
-
-    public string DeviceId { get; }
-
-    public IReadOnlyList<LightSettings> Lights { get; }
 }

@@ -1,31 +1,32 @@
-﻿namespace HomeAutomator.Api.Home;
-
-using HomeAutomator.Api.Automator;
-using HomeAutomator.Api.Devices;
-using HomeAutomator.Api.Lights;
-using HomeAutomator.Api.NfcTags;
-using HomeAutomator.Api.Settings;
-using Microsoft.AspNetCore.Mvc;
-
-[Route(ApiConstants.Route)]
-public class HomeController : ApiController
+﻿namespace HomeAutomator.Api.Home
 {
-    private readonly UrlBuilder urlBuilder;
+    using HomeAutomator.Api.Automator;
+    using HomeAutomator.Api.Devices;
+    using HomeAutomator.Api.Lights;
+    using HomeAutomator.Api.NfcTags;
+    using HomeAutomator.Api.Settings;
+    using Microsoft.AspNetCore.Mvc;
 
-    public HomeController(UrlBuilder urlBuilder)
+    [Route(ApiConstants.Route)]
+    public class HomeController : ApiController
     {
-        this.urlBuilder = urlBuilder;
-    }
+        private readonly UrlBuilder urlBuilder;
 
-    [HttpGet]
-    public IActionResult Retrieve()
-    {
-        return new JsonResult(
-            new ApiHomeInfo(
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(AutomatorController))),
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(DevicesController))),
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController))),
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(SettingsController))),
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController)))));
+        public HomeController(UrlBuilder urlBuilder)
+        {
+            this.urlBuilder = urlBuilder;
+        }
+
+        [HttpGet]
+        public IActionResult Retrieve()
+        {
+            return new JsonResult(
+                new ApiHomeInfo(
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(AutomatorController))),
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(DevicesController))),
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController))),
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(SettingsController))),
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController)))));
+        }
     }
 }

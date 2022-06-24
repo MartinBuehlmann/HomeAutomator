@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Api.Devices;
-
-public class DeviceRegistrationInfo
+﻿namespace HomeAutomator.Api.Devices
 {
-    public DeviceRegistrationInfo(string deviceId, string deviceName)
+    public class DeviceRegistrationInfo
     {
-        this.DeviceId = deviceId;
-        this.DeviceName = deviceName;
+        public DeviceRegistrationInfo(string deviceId, string deviceName)
+        {
+            this.DeviceId = deviceId;
+            this.DeviceName = deviceName;
+        }
+
+        public string DeviceId { get; }
+
+        public string DeviceName { get; }
     }
-
-    public string DeviceId { get; }
-
-    public string DeviceName { get; }
 }

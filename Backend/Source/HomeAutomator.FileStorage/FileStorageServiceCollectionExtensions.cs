@@ -1,12 +1,13 @@
-﻿namespace HomeAutomator.FileStorage;
-
-using Microsoft.Extensions.DependencyInjection;
-
-public static class FileStorageServiceCollectionExtensions
+﻿namespace HomeAutomator.FileStorage
 {
-    public static IServiceCollection AddFileStorage(this IServiceCollection services)
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class FileStorageServiceCollectionExtensions
     {
-        services.AddSingleton<IFileStorage, FileStorage>();
-        return services;
+        public static IServiceCollection AddFileStorage(this IServiceCollection services)
+        {
+            services.AddSingleton<IFileStorage, FileStorage>();
+            return services;
+        }
     }
 }

@@ -1,12 +1,13 @@
-﻿namespace HomeAutomator.Hue.Persistence;
-
-using Microsoft.Extensions.DependencyInjection;
-
-public static class HuePersistenceServiceCollectionExtensions
+﻿namespace HomeAutomator.Hue.Persistence
 {
-    public static IServiceCollection AddHuePersistence(this IServiceCollection services)
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class HuePersistenceServiceCollectionExtensions
     {
-        services.AddScoped<IHueRepository, HueRepository>();
-        return services;
+        public static IServiceCollection AddHuePersistence(this IServiceCollection services)
+        {
+            services.AddScoped<IHueRepository, HueRepository>();
+            return services;
+        }
     }
 }

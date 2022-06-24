@@ -1,34 +1,35 @@
-﻿namespace HomeAutomator.Api.Settings;
-
-public class LightSettingsInfo
+﻿namespace HomeAutomator.Api.Settings
 {
-    public LightSettingsInfo(
-        string id,
-        bool isOn,
-        string color,
-        int brightness,
-        Url light)
+    public class LightSettingsInfo
     {
-        this.Id = id;
-        this.IsOn = isOn;
-        this.Color = color;
-        this.Brightness = brightness;
-        this.Light = light;
+        public LightSettingsInfo(
+            string id,
+            bool isOn,
+            string color,
+            int brightness,
+            Url light)
+        {
+            this.Id = id;
+            this.IsOn = isOn;
+            this.Color = color;
+            this.Brightness = brightness;
+            this.Light = light;
+        }
+
+        public string Id { get; }
+
+        public bool IsOn { get; }
+
+        /// <summary>
+        ///    Gets the Color in RGB using hex values (i.e. A0EBFF).
+        /// </summary>
+        public string Color { get; }
+
+        /// <summary>
+        ///    Gets the Brightness in percents (0: dark, 100: bright).
+        /// </summary>
+        public int Brightness { get; }
+
+        public Url Light { get; }
     }
-
-    public string Id { get; }
-
-    public bool IsOn { get; }
-
-    /// <summary>
-    ///    Gets the Color in RGB using hex values (i.e. A0EBFF).
-    /// </summary>
-    public string Color { get; }
-
-    /// <summary>
-    ///    Gets the Brightness in percents (0: dark, 100: bright).
-    /// </summary>
-    public int Brightness { get; }
-
-    public Url Light { get; }
 }

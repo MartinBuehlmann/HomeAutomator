@@ -1,14 +1,15 @@
-namespace HomeAutomator.Hue.Domain;
-
-public class HueAppRegistration
+namespace HomeAutomator.Hue.Domain
 {
-    public HueAppRegistration(string bridgeId, string appKey)
+    public class HueAppRegistration
     {
-        this.BridgeId = bridgeId;
-        this.AppKey = appKey;
+        public HueAppRegistration(string bridgeId, string appKey)
+        {
+            this.BridgeId = bridgeId;
+            this.AppKey = appKey;
+        }
+
+        public string BridgeId { get; }
+
+        public string AppKey { get; }
     }
-
-    public string BridgeId { get; }
-
-    public string AppKey { get; }
 }

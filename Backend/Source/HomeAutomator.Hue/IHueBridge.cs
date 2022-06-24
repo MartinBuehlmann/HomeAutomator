@@ -1,18 +1,19 @@
-namespace HomeAutomator.Hue;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using HomeAutomator.Hue.Domain;
-
-public interface IHueBridge
+namespace HomeAutomator.Hue
 {
-    Task<IReadOnlyList<HueBridge>> DiscoverBridgesAsync();
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using HomeAutomator.Hue.Domain;
 
-    Task<HueAppRegistration?> RegisterAppAsync(HueBridge bridge, string appName, string deviceName);
+    public interface IHueBridge
+    {
+        Task<IReadOnlyList<HueBridge>> DiscoverBridgesAsync();
 
-    Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
+        Task<HueAppRegistration?> RegisterAppAsync(HueBridge bridge, string appName, string deviceName);
 
-    Task SetLightAsync(HueLight light);
+        Task<IReadOnlyList<HueLight>> RetrieveLightsAsync();
 
-    Task<IReadOnlyList<HueGroup>> RetrieveGroupsAsync();
+        Task SetLightAsync(HueLight light);
+
+        Task<IReadOnlyList<HueGroup>> RetrieveGroupsAsync();
+    }
 }

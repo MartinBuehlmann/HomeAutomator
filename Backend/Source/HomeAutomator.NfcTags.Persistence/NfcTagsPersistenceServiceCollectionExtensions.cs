@@ -1,12 +1,13 @@
-﻿namespace HomeAutomator.NfcTags.Persistence;
-
-using Microsoft.Extensions.DependencyInjection;
-
-public static class NfcTagsPersistenceServiceCollectionExtensions
+﻿namespace HomeAutomator.NfcTags.Persistence
 {
-    public static IServiceCollection AddNfcTagsPersistence(this IServiceCollection services)
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class NfcTagsPersistenceServiceCollectionExtensions
     {
-        services.AddScoped<INfcTagsRepository, NfcTagsRepository>();
-        return services;
+        public static IServiceCollection AddNfcTagsPersistence(this IServiceCollection services)
+        {
+            services.AddScoped<INfcTagsRepository, NfcTagsRepository>();
+            return services;
+        }
     }
 }

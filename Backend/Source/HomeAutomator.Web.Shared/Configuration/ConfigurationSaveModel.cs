@@ -1,11 +1,12 @@
-﻿namespace HomeAutomator.Web.Shared.Configuration;
-
-public class ConfigurationSaveModel
+﻿namespace HomeAutomator.Web.Shared.Configuration
 {
-    public ConfigurationSaveModel(string bridgeId)
+    public class ConfigurationSaveModel
     {
-        this.BridgeId = bridgeId;
-    }
+        public ConfigurationSaveModel(string bridgeId)
+        {
+            this.BridgeId = bridgeId;
+        }
 
-    public string BridgeId { get; }
+        public string BridgeId { get; }
+    }
 }

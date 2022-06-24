@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Api.Automator;
-
-public class AutomatorInfo
+﻿namespace HomeAutomator.Api.Automator
 {
-    public AutomatorInfo(string deviceId, string tagId)
+    public class AutomatorInfo
     {
-        this.DeviceId = deviceId;
-        this.TagId = tagId;
+        public AutomatorInfo(string deviceId, string tagId)
+        {
+            this.DeviceId = deviceId;
+            this.TagId = tagId;
+        }
+
+        public string DeviceId { get; }
+
+        public string TagId { get; }
     }
-
-    public string DeviceId { get; }
-
-    public string TagId { get; }
 }

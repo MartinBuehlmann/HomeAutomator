@@ -1,19 +1,20 @@
-﻿namespace HomeAutomator.NfcTags.Domain;
-
-using System;
-
-public class NfcTag
+﻿namespace HomeAutomator.NfcTags.Domain
 {
-    public NfcTag(string tagId, string tagName, DateTimeOffset registrationDateTime)
+    using System;
+
+    public class NfcTag
     {
-        this.TagName = tagName;
-        this.RegistrationDateTime = registrationDateTime;
-        this.TagId = tagId;
+        public NfcTag(string tagId, string tagName, DateTimeOffset registrationDateTime)
+        {
+            this.TagName = tagName;
+            this.RegistrationDateTime = registrationDateTime;
+            this.TagId = tagId;
+        }
+
+        public string TagId { get; }
+
+        public string TagName { get; }
+
+        public DateTimeOffset RegistrationDateTime { get; }
     }
-
-    public string TagId { get; }
-
-    public string TagName { get; }
-
-    public DateTimeOffset RegistrationDateTime { get; }
 }

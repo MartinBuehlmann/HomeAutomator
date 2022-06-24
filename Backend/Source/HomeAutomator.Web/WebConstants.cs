@@ -1,6 +1,7 @@
-﻿namespace HomeAutomator.Web;
-
-public static class WebConstants
+﻿namespace HomeAutomator.Web
 {
-    public const string Route = "web";
+    public static class WebConstants
+    {
+        public const string Route = "web";
+    }
 }

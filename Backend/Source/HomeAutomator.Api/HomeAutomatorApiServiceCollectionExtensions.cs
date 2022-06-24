@@ -1,12 +1,13 @@
-﻿namespace HomeAutomator.Api;
-
-using Microsoft.Extensions.DependencyInjection;
-
-public static class HomeAutomatorApiServiceCollectionExtensions
+﻿namespace HomeAutomator.Api
 {
-    public static IServiceCollection AddHomeAutomatorApi(this IServiceCollection services)
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class HomeAutomatorApiServiceCollectionExtensions
     {
-        services.AddTransient<UrlBuilder>();
-        return services;
+        public static IServiceCollection AddHomeAutomatorApi(this IServiceCollection services)
+        {
+            services.AddTransient<UrlBuilder>();
+            return services;
+        }
     }
 }

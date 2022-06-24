@@ -1,12 +1,13 @@
-﻿namespace HomeAutomator.Settings.Persistence;
-
-using Microsoft.Extensions.DependencyInjection;
-
-public static class SettingsPersistenceServiceCollectionExtensions
+﻿namespace HomeAutomator.Settings.Persistence
 {
-    public static IServiceCollection AddSettingsPersistence(this IServiceCollection services)
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class SettingsPersistenceServiceCollectionExtensions
     {
-        services.AddScoped<ISettingsRepository, SettingsRepository>();
-        return services;
+        public static IServiceCollection AddSettingsPersistence(this IServiceCollection services)
+        {
+            services.AddScoped<ISettingsRepository, SettingsRepository>();
+            return services;
+        }
     }
 }

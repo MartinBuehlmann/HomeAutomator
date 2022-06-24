@@ -1,20 +1,21 @@
-﻿namespace HomeAutomator.Api.NfcTags;
-
-public class NfcTagInfo
+﻿namespace HomeAutomator.Api.NfcTags
 {
-    public NfcTagInfo(
-        string tagId,
-        string tagName,
-        Url self)
+    public class NfcTagInfo
     {
-        this.TagId = tagId;
-        this.TagName = tagName;
-        this.Self = self;
+        public NfcTagInfo(
+            string tagId,
+            string tagName,
+            Url self)
+        {
+            this.TagId = tagId;
+            this.TagName = tagName;
+            this.Self = self;
+        }
+
+        public string TagId { get; }
+
+        public string TagName { get; }
+
+        public Url Self { get; }
     }
-
-    public string TagId { get; }
-
-    public string TagName { get; }
-
-    public Url Self { get; }
 }

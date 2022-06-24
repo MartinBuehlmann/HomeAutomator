@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Web.Client.Pages;
-
-using System.Threading.Tasks;
-
-/// <summary>
-/// Code behind of the setup view.
-/// </summary>
-public partial class SetupView
+﻿namespace HomeAutomator.Web.Client.Pages
 {
-    protected override async Task OnInitializedAsync()
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Code behind of the setup view.
+    /// </summary>
+    public partial class SetupView
     {
-        await this.ViewModel.OnInitializedAsync();
+        protected override async Task OnInitializedAsync()
+        {
+            await this.ViewModel.OnInitializedAsync();
+        }
     }
 }

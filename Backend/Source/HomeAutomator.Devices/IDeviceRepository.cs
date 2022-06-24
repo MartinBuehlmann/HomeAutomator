@@ -1,10 +1,11 @@
-﻿namespace HomeAutomation.Devices;
-
-using HomeAutomation.Devices.Domain;
-
-public interface IDeviceRepository
+﻿namespace HomeAutomation.Devices
 {
-    DeviceRegistration RetrieveDeviceRegistrationByDeviceId(string deviceId);
+    using HomeAutomation.Devices.Domain;
 
-    void AddOrUpdateDeviceRegistration(string deviceId, string deviceName);
+    public interface IDeviceRepository
+    {
+        DeviceRegistration RetrieveDeviceRegistrationByDeviceId(string deviceId);
+
+        void AddOrUpdateDeviceRegistration(string deviceId, string deviceName);
+    }
 }

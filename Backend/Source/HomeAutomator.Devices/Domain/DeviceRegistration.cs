@@ -1,22 +1,23 @@
-﻿namespace HomeAutomation.Devices.Domain;
-
-using System;
-
-public class DeviceRegistration
+﻿namespace HomeAutomation.Devices.Domain
 {
-    public DeviceRegistration(
-        string deviceId,
-        string deviceName,
-        DateTimeOffset registrationDateTime)
+    using System;
+
+    public class DeviceRegistration
     {
-        this.DeviceId = deviceId;
-        this.DeviceName = deviceName;
-        this.RegistrationDateTime = registrationDateTime;
+        public DeviceRegistration(
+            string deviceId,
+            string deviceName,
+            DateTimeOffset registrationDateTime)
+        {
+            this.DeviceId = deviceId;
+            this.DeviceName = deviceName;
+            this.RegistrationDateTime = registrationDateTime;
+        }
+
+        public string DeviceId { get; }
+
+        public string DeviceName { get; }
+
+        public DateTimeOffset RegistrationDateTime { get; }
     }
-
-    public string DeviceId { get; }
-
-    public string DeviceName { get; }
-
-    public DateTimeOffset RegistrationDateTime { get; }
 }

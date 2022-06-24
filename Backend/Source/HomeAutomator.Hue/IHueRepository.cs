@@ -1,14 +1,15 @@
-namespace HomeAutomator.Hue;
-
-using HomeAutomator.Hue.Domain;
-
-public interface IHueRepository
+namespace HomeAutomator.Hue
 {
-    string? RetrieveCurrentBridgeId();
+    using HomeAutomator.Hue.Domain;
 
-    void SaveOrUpdateCurrentBridgeId(string? bridgeId);
+    public interface IHueRepository
+    {
+        string? RetrieveCurrentBridgeId();
 
-    HueAppRegistration? RetrieveHueAppKeyByBridgeId(string bridgeId);
+        void SaveOrUpdateCurrentBridgeId(string? bridgeId);
 
-    void AddOrUpdateHueAppRegistration(HueAppRegistration hueAppRegistration);
+        HueAppRegistration? RetrieveHueAppKeyByBridgeId(string bridgeId);
+
+        void AddOrUpdateHueAppRegistration(HueAppRegistration hueAppRegistration);
+    }
 }

@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Web.Shared.Configuration;
-
-public class ConfigurationEditModel
+﻿namespace HomeAutomator.Web.Shared.Configuration
 {
-    public ConfigurationEditModel(string bridgeId, HueBridgeModel[] discoveredHueBridges)
+    public class ConfigurationEditModel
     {
-        this.BridgeId = bridgeId;
-        this.DiscoveredHueBridges = discoveredHueBridges;
+        public ConfigurationEditModel(string bridgeId, HueBridgeModel[] discoveredHueBridges)
+        {
+            this.BridgeId = bridgeId;
+            this.DiscoveredHueBridges = discoveredHueBridges;
+        }
+
+        public string BridgeId { get; set; }
+
+        public HueBridgeModel[] DiscoveredHueBridges { get; }
     }
-
-    public string BridgeId { get; set; }
-
-    public HueBridgeModel[] DiscoveredHueBridges { get; }
 }

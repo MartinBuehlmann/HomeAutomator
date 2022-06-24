@@ -1,13 +1,14 @@
-﻿namespace HomeAutomator;
-
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-
-public static class CommonExtensions
+﻿namespace HomeAutomator
 {
-    public static IServiceCollection AddCommonServices(this IServiceCollection services)
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class CommonExtensions
     {
-        services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        return services;
+        public static IServiceCollection AddCommonServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            return services;
+        }
     }
 }

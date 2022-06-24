@@ -63,7 +63,6 @@ csharp_indent_labels = one_less_than_current
 csharp_style_unused_value_expression_statement_preference = discard_variable:silent
 dotnet_diagnostic.SA1600.severity = silent
 dotnet_diagnostic.SA1633.severity = silent
-dotnet_diagnostic.SA1009.severity = silent
 
 [*.vb]
 #### Benennungsstile ####

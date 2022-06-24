@@ -1,13 +1,14 @@
-﻿namespace HomeAutomator.Devices.Persistence;
-
-using HomeAutomation.Devices;
-using Microsoft.Extensions.DependencyInjection;
-
-public static class DevicesPersistenceServiceCollectionExtensions
+﻿namespace HomeAutomator.Devices.Persistence
 {
-    public static IServiceCollection AddDevicesPersistence(this IServiceCollection services)
+    using HomeAutomation.Devices;
+    using Microsoft.Extensions.DependencyInjection;
+
+    public static class DevicesPersistenceServiceCollectionExtensions
     {
-        services.AddScoped<IDeviceRepository, DeviceRepository>();
-        return services;
+        public static IServiceCollection AddDevicesPersistence(this IServiceCollection services)
+        {
+            services.AddScoped<IDeviceRepository, DeviceRepository>();
+            return services;
+        }
     }
 }

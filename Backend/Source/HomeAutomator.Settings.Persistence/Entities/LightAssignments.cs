@@ -1,14 +1,15 @@
-﻿namespace HomeAutomator.Settings.Persistence.Entities;
-
-using System.Collections.Generic;
-using HomeAutomator.Settings.Domain;
-
-internal class LightAssignments
+﻿namespace HomeAutomator.Settings.Persistence.Entities
 {
-    public LightAssignments()
-    {
-        this.Items = new List<LightAssignment>();
-    }
+    using System.Collections.Generic;
+    using HomeAutomator.Settings.Domain;
 
-    public List<LightAssignment> Items { get; }
+    internal class LightAssignments
+    {
+        public LightAssignments()
+        {
+            this.Items = new List<LightAssignment>();
+        }
+
+        public List<LightAssignment> Items { get; }
+    }
 }
