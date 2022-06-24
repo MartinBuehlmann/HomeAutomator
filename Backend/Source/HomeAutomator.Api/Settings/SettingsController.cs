@@ -27,16 +27,18 @@
         /// <param name="deviceId">Id of the device which scanned the NFC tag.</param>
         /// <returns>List of light settings assigned to the tag and device.</returns>
         [HttpGet("{tagId}/{deviceId}")]
-        public IActionResult RetrieveLightsByTagIdAndDeviceId(string tagId, string deviceId)
+        public IReadOnlyList<LightSettingsInfo> RetrieveLightsByTagIdAndDeviceId(string tagId, string deviceId)
         {
             IReadOnlyList<LightSettings> lightSettings =
                 this.settingsRepository.RetrieveAssignedLightSettings(tagId, deviceId);
-            return new JsonResult(lightSettings.Select(x => new LightSettingsInfo(
-                x.Id,
-                x.On,
-                x.Color,
-                x.Brightness,
-                new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController), x.Id)))));
+            return lightSettings
+                .Select(x => new LightSettingsInfo(
+                    x.Id,
+                    x.On,
+                    x.Color,
+                    x.Brightness,
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController), x.Id))))
+                .ToList();
         }
 
         /// <summary>
@@ -60,15 +62,15 @@
             return this.Ok();
         }
 
-        // TODO: Parameter lightId is not used, maybe a refactoring on the app is also required.
         [HttpPut("{tagId}/{deviceId}/{lightId}")]
         public IActionResult UpdateSingleLightSettings(
             string tagId,
             string deviceId,
+            string lightId,
             [FromBody] LightSettingsInfo lightSettingInfos)
         {
             var lightSettings = new LightSettings(
-                lightSettingInfos.Id,
+                lightId,
                 lightSettingInfos.IsOn,
                 lightSettingInfos.Color,
                 lightSettingInfos.Brightness);
