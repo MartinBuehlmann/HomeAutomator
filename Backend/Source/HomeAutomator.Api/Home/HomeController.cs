@@ -18,15 +18,14 @@
         }
 
         [HttpGet]
-        public IActionResult Retrieve()
+        public ApiHomeInfo Retrieve()
         {
-            return new JsonResult(
-                new ApiHomeInfo(
+            return new ApiHomeInfo(
                     new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(AutomatorController))),
                     new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(DevicesController))),
                     new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(NfcTagsController))),
                     new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(SettingsController))),
-                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController)))));
+                    new Url(this.urlBuilder.Build(ApiConstants.Route, nameof(LightsController))));
         }
     }
 }
