@@ -14,7 +14,7 @@ class LightSelectionPage extends StatefulWidget {
   const LightSelectionPage({Key? key}) : super(key: key);
 
   @override
-  _LightSelectionPageState createState() => _LightSelectionPageState();
+  State<LightSelectionPage> createState() => _LightSelectionPageState();
 }
 
 class _LightSelectionPageState extends State<LightSelectionPage> {
@@ -48,11 +48,7 @@ class _LightSelectionPageState extends State<LightSelectionPage> {
                           ),
                     );
                     await HttpClientWrapper.put(
-                        urlProvider.settings +
-                            '/' +
-                            tagId +
-                            '/' +
-                            await DeviceInfoWrapper.retrieveDeviceId(),
+                        '${urlProvider.settings}/$tagId/${await DeviceInfoWrapper.retrieveDeviceId()}',
                         selectedLightSettings);
                     Navigator.of(context).pushReplacementNamed(
                       Routes.settings,

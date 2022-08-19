@@ -12,11 +12,7 @@ class AssignedLightSettingsRetriever {
   Future<List<LightSettings>> retrieveAssignedLightSettings(
       String tagId) async {
     final retrievedAssignedLights = await HttpClientWrapper.get(
-        urlProvider.settings +
-            '/' +
-            tagId +
-            '/' +
-            await DeviceInfoWrapper.retrieveDeviceId());
+        '${urlProvider.settings}/$tagId/${await DeviceInfoWrapper.retrieveDeviceId()}');
     return LightSettingsMapper.mapList(retrievedAssignedLights as List);
   }
 }

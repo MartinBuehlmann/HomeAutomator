@@ -30,7 +30,7 @@ class AuthProvider extends ChangeNotifier {
       await _urlProvider.load(backendAddress);
 
       final deviceId = await DeviceInfoWrapper.retrieveDeviceId();
-      await HttpClientWrapper.head(_urlProvider.devices + '/' + deviceId);
+      await HttpClientWrapper.head('${_urlProvider.devices}/$deviceId');
 
       _isLoggedIn = true;
       _nfcProvider.initialize();

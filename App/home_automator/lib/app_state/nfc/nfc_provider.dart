@@ -33,7 +33,7 @@ class NfcProvider extends ChangeNotifier {
         if (tagId != _nfcTag.tagId) {
           try {
             final loadedNfcTag =
-                await HttpClientWrapper.get(_urlProvider.nfcTags + '/' + tagId);
+                await HttpClientWrapper.get('${_urlProvider.nfcTags}/$tagId');
 
             if (loadedNfcTag.isEmpty) {
               _nfcTag = NfcTagData(tagId, '');

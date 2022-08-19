@@ -64,7 +64,7 @@ class ConfigurableLightWidget extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: Center(
-                  child: Text(light.brightness.toString() + '%'),
+                  child: Text('${light.brightness}%'),
                 ),
               ),
             ],

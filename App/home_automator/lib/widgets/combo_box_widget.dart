@@ -37,8 +37,8 @@ class _ComboBoxWidgetState extends State<ComboBoxWidget> {
 
     dropdownItems.addAll(widget.items.map(
       (DropdownItem item) => DropdownMenuItem<DropdownItem>(
-        child: Text(item.displayValue),
         value: item,
+        child: Text(item.displayValue),
       ),
     ));
   }
@@ -67,6 +67,8 @@ class _ComboBoxWidgetState extends State<ComboBoxWidget> {
               height: 10,
             ),
             Container(
+              color: widget.isEnabled ? Colors.white : Colors.white54,
+              padding: const EdgeInsets.all(7),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<DropdownItem>(
                   autofocus: widget.isFocussed,
@@ -84,8 +86,6 @@ class _ComboBoxWidgetState extends State<ComboBoxWidget> {
                   isExpanded: true,
                 ),
               ),
-              color: widget.isEnabled ? Colors.white : Colors.white54,
-              padding: const EdgeInsets.all(7),
             ),
           ],
         ),

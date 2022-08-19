@@ -9,7 +9,7 @@ mixin DeviceInfoWrapper {
     String? deviceId;
     if (Platform.isAndroid) {
       var info = await _deviceInfoPlugin.androidInfo;
-      deviceId = info.androidId;
+      deviceId = info.id;
     } else if (Platform.isIOS) {
       var info = await _deviceInfoPlugin.iosInfo;
       deviceId = info.identifierForVendor;

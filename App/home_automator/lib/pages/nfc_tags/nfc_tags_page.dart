@@ -13,7 +13,7 @@ class NfcTagsPage extends StatefulWidget {
   const NfcTagsPage({Key? key}) : super(key: key);
 
   @override
-  _NfcTagsPageState createState() => _NfcTagsPageState();
+  State<NfcTagsPage> createState() => _NfcTagsPageState();
 }
 
 class _NfcTagsPageState extends State<NfcTagsPage> {

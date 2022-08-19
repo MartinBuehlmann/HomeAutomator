@@ -14,7 +14,7 @@ class UrlProvider {
   String get lights => _lights;
 
   Future<void> load(String backendUrl) async {
-    final urls = await HttpClientWrapper.get('http://' + backendUrl + '/api');
+    final urls = await HttpClientWrapper.get('http://$backendUrl/api');
     _automator = urls['automator']['href'];
     _devices = urls['devices']['href'];
     _nfcTags = urls['nfcTags']['href'];

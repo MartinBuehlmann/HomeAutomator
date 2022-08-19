@@ -14,7 +14,7 @@ class LightSettingsPage extends StatefulWidget {
   const LightSettingsPage({Key? key}) : super(key: key);
 
   @override
-  _LightSettingsPageState createState() => _LightSettingsPageState();
+  State<LightSettingsPage> createState() => _LightSettingsPageState();
 }
 
 class _LightSettingsPageState extends State<LightSettingsPage> {
@@ -109,13 +109,7 @@ class _LightSettingsPageState extends State<LightSettingsPage> {
               child: Text(localizations.lightSelectionPageLabelAcceptButton),
               onPressed: () async {
                 await HttpClientWrapper.put(
-                    urlProvider.settings +
-                        '/' +
-                        _lightSettingsData!.tagId +
-                        '/' +
-                        await DeviceInfoWrapper.retrieveDeviceId() +
-                        '/' +
-                        _lightSettingsData!.light.id,
+                    '${urlProvider.settings}/${_lightSettingsData!.tagId}/${await DeviceInfoWrapper.retrieveDeviceId()}/${_lightSettingsData!.light.id}',
                     {
                       'id': _lightSettingsData!.light.id,
                       'isOn': _lightSettingsData!.light.on,
@@ -136,7 +130,7 @@ class _LightSettingsPageState extends State<LightSettingsPage> {
   }
 
   Future _setLight(UrlProvider urlProvider, Light light) async {
-    await HttpClientWrapper.put(urlProvider.lights + '/' + light.id, {
+    await HttpClientWrapper.put('${urlProvider.lights}/${light.id}', {
       'isOn': light.on,
       'color': light.color.substring(light.color.length - 6),
       'brightness': light.brightness

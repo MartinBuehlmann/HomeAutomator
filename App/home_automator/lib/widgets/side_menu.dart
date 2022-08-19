@@ -24,9 +24,9 @@ class SideMenu extends StatelessWidget {
                     height: 25,
                   ),
                   SizedBox(
-                    child: SvgPicture.asset('assets/images/logo.svg'),
                     width: 100,
                     height: 50,
+                    child: SvgPicture.asset('assets/images/logo.svg'),
                   ),
                   const AppNameWidget(16),
                 ],
