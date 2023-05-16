@@ -1,4 +1,3 @@
-import 'package:dart_extensions/dart_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:home_automator/app_state/urls/url_provider.dart';

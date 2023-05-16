@@ -15,12 +15,12 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.44">
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.5.22">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Q42.HueApi" Version="3.20.0" />
-        <PackageReference Include="Q42.HueApi.ColorConverters" Version="3.18.1" />
+        <PackageReference Include="Q42.HueApi" Version="3.21.0" />
+        <PackageReference Include="Q42.HueApi.ColorConverters" Version="3.20.1" />
         <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.435">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
