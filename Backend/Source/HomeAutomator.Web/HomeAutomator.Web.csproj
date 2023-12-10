@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HomeAutomator.Hue\HomeAutomator.Hue.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Web.Shared\HomeAutomator.Web.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

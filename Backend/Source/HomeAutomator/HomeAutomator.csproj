@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\HomeAutomator.Api\HomeAutomator.Api.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Devices.Persistence\HomeAutomator.Devices.Persistence.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Hue.Persistence\HomeAutomator.Hue.Persistence.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Hue.Bridge\HomeAutomator.Hue.Bridge.csproj" />
+        <ProjectReference Include="..\HomeAutomator.NfcTags.Persistence\HomeAutomator.NfcTags.Persistence.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Settings.Persistence\HomeAutomator.Settings.Persistence.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Web.Client\HomeAutomator.Web.Client.csproj" />
+        <ProjectReference Include="..\HomeAutomator.Web\HomeAutomator.Web.csproj" />
+    </ItemGroup>
+
+</Project>

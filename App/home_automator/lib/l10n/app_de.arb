@@ -1,0 +1,22 @@
+{
+  "appTitle": "HomeAutomator",
+  "menuItemOverview": "Übersicht",
+  "menuItemNfcTags": "NFC Tags",
+  "menuItemSetup": "Einstellungen",
+  "menuItemLogout": "Abmelden",
+  "pageHeaderOverview" : "Übersicht",
+  "pageHeaderNfcTags" : "NFC Tags",
+  "pageHeaderSetup" : "Einstellungen",
+  "pageHeaderSelectLight": "Lampe hinzufügen",
+  "pageHeaderSetupLight": "Lampe",
+  "settingsPageLabelArea": "Bereich (NFC Tag)",
+  "settingsPageLabelLights": "Lampen",
+  "settingsPageLabelAddButton": "+",
+  "lightSettingsPageLabelBrightness": "Helligkeit",
+  "lightSettingsPageLabelDeleteButton": "Löschen",
+  "lightSelectionPageLabelAcceptButton": "Übernehmen",
+  "nfcTagsPageLabelReadNfcTag": "NFC Tag berühren",
+  "nfcTagsPageLabelName": "Name",
+  "nfcTagsPageLabelNfcTag": "NFC Tag",
+  "nfcTagsPageButtonSave": "Speichern"
+}
