@@ -1,6 +1,6 @@
 ﻿namespace HomeAutomator.Devices.Persistence;
 
-using HomeAutomation.Devices;
+using HomeAutomator.Devices;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class DevicesPersistenceServiceCollectionExtensions

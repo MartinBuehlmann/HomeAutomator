@@ -1,4 +1,4 @@
-﻿namespace HomeAutomation.Devices.Domain;
+﻿namespace HomeAutomator.Devices.Domain;
 
 using System;
 

@@ -2,8 +2,8 @@
 
 using System;
 using System.Linq;
-using HomeAutomation.Devices;
-using HomeAutomation.Devices.Domain;
+using HomeAutomator.Devices;
+using HomeAutomator.Devices.Domain;
 using HomeAutomator.Devices.Persistence.Entities;
 using HomeAutomator.FileStorage;
 
@@ -18,7 +18,7 @@ internal class DeviceRepository : IDeviceRepository
         this.fileStorage = fileStorage;
     }
 
-    public DeviceRegistration RetrieveDeviceRegistrationByDeviceId(string deviceId)
+    public DeviceRegistration? RetrieveDeviceRegistrationByDeviceId(string deviceId)
     {
         var deviceRegistrations = this.fileStorage.Read<DeviceRegistrations>(DeviceRegistrationsName);
         return deviceRegistrations?.Items.SingleOrDefault(x => x.DeviceId == deviceId);

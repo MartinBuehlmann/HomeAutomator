@@ -1,7 +1,7 @@
 ﻿namespace HomeAutomator.Devices.Persistence.Entities;
 
 using System.Collections.Generic;
-using HomeAutomation.Devices.Domain;
+using HomeAutomator.Devices.Domain;
 
 internal class DeviceRegistrations
 {
